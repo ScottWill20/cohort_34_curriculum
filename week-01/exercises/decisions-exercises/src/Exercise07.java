@@ -15,6 +15,16 @@ public class Exercise07 {
         System.out.println("Day of the week: ");
         String dayOfWeek = console.nextLine();
 
+        if ((dayOfWeek.startsWith("S") || (dayOfWeek.startsWith("s"))) && (hoursOfHomework < 15)) {
+            System.out.println("Hours of homework: " + hoursOfHomework);
+            System.out.println("Day of Week: " + dayOfWeek);
+            System.out.println("I'm taking the day off!");
+        }  else {
+            System.out.println("Hours of homework: " + hoursOfHomework);
+            System.out.println("Day of Week: " + dayOfWeek);
+            System.out.println("Time to do the homework...");
+        }
+
         // 1. Create if/else statements to enforce Abdi's homework rules.
         // 2. Print data-rich messages for each scenario.
 

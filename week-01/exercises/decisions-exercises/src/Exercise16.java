@@ -1,9 +1,42 @@
+import java.util.Scanner;
+
 public class Exercise16 {
 
     public static void main(String[] args) {
         // 1. Display the following menu and collect an integer choice from the user.
         // (See Exercise14 for a menu example.)
-        //
+        Scanner console = new Scanner(System.in);
+
+        System.out.println("Menu");
+        System.out.println("1. Print the name of an animal.");
+        System.out.println("2. Print the name of a state.");
+        System.out.println("3. Print the name of a beetle.");
+        System.out.println("4. Print the name of a mineral.");
+        System.out.print("Select [1-4]: ");
+
+        int select = Integer.parseInt(console.nextLine());
+
+        switch (select) {
+            case 1:
+                System.out.println("Horse");
+                break;
+            case 2:
+                System.out.println("Kansas");
+                break;
+            case 3:
+                System.out.println("Hercules beetle");
+                break;
+            case 4:
+                System.out.println("Quartz");
+                break;
+            default:
+                System.out.println("Unknown menu option.");
+                break;
+        }
+
+
+
+
         // Menu
         // 1. Print the name of an animal.
         // 2. Print the name of a state.
