@@ -5,9 +5,14 @@ public class Exercise09 {
         double a = 93602.52968612382;
         double b = -4817.496614294316;
         double c = 46338.06248816222;
+        double sum = a + b + c;
 
         // 1. Calculate the average of a, b, and c and store the value in a new variable.
         // 2. Print the result.
         // Expected value: 45041.03185 (give or take)
+        double average = sum / 3;
+
+        System.out.println(average);
+
     }
 }

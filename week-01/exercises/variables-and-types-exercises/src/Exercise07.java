@@ -5,5 +5,10 @@ public class Exercise07 {
         // where each floor has 15 "rows" and 8 "columns" of offices.
         // 2. Use whatever approach you think is best.
         // 3. Print the result.
+        int row = 8;
+        int column = 15;
+        int story = 23;
+        int numberOfOffices = (row * column) * story;
+        System.out.println(numberOfOffices);
     }
 }

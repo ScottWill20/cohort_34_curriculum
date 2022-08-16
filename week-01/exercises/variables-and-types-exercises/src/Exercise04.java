@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public class Exercise04 {
+public class Exercise04 {
+
+
+    public static void main(String args[]) {
+        int heightInInches = 69;
+        System.out.println(heightInInches);
+    }
 }

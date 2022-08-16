@@ -11,5 +11,6 @@ public class Exercise00a {
         /* This is a multi-line
         comment
          */
+        System.out.println("comments!");
     }
 }
