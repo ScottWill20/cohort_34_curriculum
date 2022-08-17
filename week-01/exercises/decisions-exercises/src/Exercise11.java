@@ -16,7 +16,9 @@ public class Exercise11 {
 
         if ((managerAAsked) && (managerBAsked) && (managerCAsked)) {
             System.out.println("Feature in progress.");
-        } else if ((managerAAsked) && (managerBAsked) || (managerAAsked) && (managerCAsked) || (managerBAsked) && (managerCAsked)) {
+        } else if ((managerAAsked) && (managerBAsked) ||
+                (managerAAsked) && (managerCAsked) ||
+                (managerBAsked) && (managerCAsked)) {
             System.out.println("Adding feature to schedule.");
         } else if ((managerAAsked) || (managerBAsked) || (managerCAsked)) {
             System.out.println("Going to hold off for a bit.");

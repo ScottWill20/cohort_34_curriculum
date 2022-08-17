@@ -5,10 +5,11 @@ public class Exercise05 {
         // Run the code before you make changes to better understand current behavior.
         // The transformation from `while` to `for` should not change behavior.
 
-        int index = 5;
-        while (index <= 100) {
+        for (int index = 5;
+             index<= 100;
+             index +=5
+        ) {
             System.out.println(index);
-            index += 5;
         }
     }
 }

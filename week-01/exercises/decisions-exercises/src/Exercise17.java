@@ -28,6 +28,8 @@ public class Exercise17 {
                 break;
             case 6:
             case 7:
+                System.out.println("Hours of Homework: " + hoursOfHomework);
+                System.out.println("Day of the week: " + dayOfWeek);
                 if (hoursOfHomework < 15) {
                     System.out.println("I'm taking the day off!");
                 } else {

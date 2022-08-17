@@ -12,16 +12,12 @@ public class Exercise07 {
         System.out.print("Hours of homework: ");
         int hoursOfHomework = Integer.parseInt(console.nextLine());
 
-        System.out.println("Day of the week: ");
+        System.out.print("Day of the week: ");
         String dayOfWeek = console.nextLine();
 
         if ((dayOfWeek.startsWith("S") || (dayOfWeek.startsWith("s"))) && (hoursOfHomework < 15)) {
-            System.out.println("Hours of homework: " + hoursOfHomework);
-            System.out.println("Day of Week: " + dayOfWeek);
             System.out.println("I'm taking the day off!");
         }  else {
-            System.out.println("Hours of homework: " + hoursOfHomework);
-            System.out.println("Day of Week: " + dayOfWeek);
             System.out.println("Time to do the homework...");
         }
 

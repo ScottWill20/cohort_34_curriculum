@@ -37,7 +37,7 @@ public class Exercise15 {
                 break;
             default:
                 opposite = null;
-                System.out.printf("I don't have an opposite for %s.%n", word);
+                System.out.printf("I don't have an opposite for %s.", word);
         }
 
         // 1. Re-implement Exercise08 using a switch statement.
