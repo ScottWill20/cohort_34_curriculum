@@ -2,6 +2,14 @@ public class Exercise09 {
 
     public static void main(String[] args) {
         // 2. Call your method in various ways to test it here.
+        printBox("#",10, 10);
+    }
+
+    public static void printBox(String hash, int row, int column) {
+        for(int r = 0; r < row; r++){
+            for (int c = 0; c < column; c++) {
+            }
+        }
     }
 
     // 1. Create a method.
