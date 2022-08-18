@@ -1,7 +1,8 @@
 public class Exercise08 {
     public static void main(String[] args) {
-        String fruit = getRandomFruit();
-        System.out.println(fruit);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(getRandomFruit());
+        }
     }
 
     // 1. Create a method.
@@ -14,11 +15,12 @@ public class Exercise08 {
 
     public static String getRandomFruit() {
 
-        switch ((int) (Math.random() * 5)) {
+        switch ((int) (Math.random() * 6)) {
             case 0:
                 return "Apple";
             case 1:
                 return "Banana";
+
             case 2:
                 return "Pear";
             case 3:
@@ -26,7 +28,7 @@ public class Exercise08 {
             case 4:
                 return "Watermelon";
         }
-    return "";
+    return ""; // this shouldn't ever run
     }
 
 }

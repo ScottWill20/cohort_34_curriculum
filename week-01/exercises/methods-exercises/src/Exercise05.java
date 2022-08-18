@@ -7,8 +7,7 @@ public class Exercise05 {
     // Description: converts gallons to cups. (Common measure, not US legal.)
 
     public static int gallonsToCups(int gallon) {
-        int cup = 16;
-        return cup * gallon;
+        return gallon * 16;
     }
 
     public static void main(String[] args) {

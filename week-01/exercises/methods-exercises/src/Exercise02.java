@@ -11,8 +11,7 @@ public class Exercise02 {
     // multiplyThree accepts threes doubles and multiplies them together.
     // 1. Finish implementing the multiplyThree method.
     public static double multiplyThree(double a, double b, double c) {
-        int product = (int) (a * b);
-        return (c * product);
+        return a * b * c;
     }
 
 }
