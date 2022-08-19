@@ -5,7 +5,7 @@ public class Exercise01 {
         // to the number of months until your birthday.
         // 2. Run the code.
         // Hint: Right-click on this file and select Run -> Exercise01.main
-        int monthsUntilMyBirthday = -2;
+        int monthsUntilMyBirthday = -1;
 
         System.out.println("Months until my birthday:");
         System.out.println(monthsUntilMyBirthday);

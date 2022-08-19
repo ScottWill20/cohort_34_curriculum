@@ -6,14 +6,7 @@ public class Exercise05 {
         Scanner console = new Scanner(System.in);
 
         System.out.print("Enter the secret word: ");
-        String userInput = console.nextLine();
-        String secret = "tahini";
-
-        if (userInput.equalsIgnoreCase(secret)) {
-            System.out.println("You're correct. The secret word is \"tahini\".");
-        } else {
-            System.out.println("That's not quite right. Try again.");
-        }
+        String secret = console.nextLine();
 
         // 1. Add decision statements so that:
         // If the secret work is tahini, print the message:

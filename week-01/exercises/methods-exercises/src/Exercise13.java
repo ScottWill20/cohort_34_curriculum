@@ -7,9 +7,6 @@ public class Exercise13 {
     // Description: return true if the three parameters are in ascending order.
     // Otherwise, returns false.
     // (See Exercise07.)
-    public static boolean areInOrder(int a, int b, int c){
-        return a < b && b <= c;
-    }
 
     // 2. Create a method.
     // Name: areContiguous
@@ -28,10 +25,6 @@ public class Exercise13 {
     // 7, 5, 6 -> false
     // 1, 0, 1 -> true
 
-    public static boolean areContiguous(int a, int b, int c) {
-        return Math.abs(a - b) == 1 && Math.abs(b - c) == 1;
-    }
-
     // 3. Create a method.
     // Name: isAscendingContiguous
     // Inputs: int, int, int
@@ -41,18 +34,11 @@ public class Exercise13 {
     // Hint: call areInOrder and areContiguous. Neither method can guarantee the result alone, but together they solve
     // the problem.
 
-    public static boolean isAscendingContiguous(int a, int b, int c) {
-        return areInOrder(a, b, c) && areContiguous(a, b, c);
-    }
-
     public static void main(String[] args) {
         // 4. Uncomment the code below and confirm it works.
-        System.out.println(isAscendingContiguous(3, 4, 5)); // true
-        System.out.println(isAscendingContiguous(-10, 4, 100)); // false
-        System.out.println(isAscendingContiguous(2, 1, 2)); // false
-        System.out.println(isAscendingContiguous(5, 4, 3)); // false, not ascending
-
-        // System.out.println(areContiguous(1,2,3));
-        // System.out.println(areContiguous(1,1,2));
+        // System.out.println(isAscendingContiguous(3, 4, 5)); // true
+        // System.out.println(isAscendingContiguous(-10, 4, 100)); // false
+        // System.out.println(isAscendingContiguous(2, 1, 2)); // false
+        // System.out.println(isAscendingContiguous(5, 4, 3)); // false, not ascending
     }
 }
