@@ -14,19 +14,7 @@ public class Exercise11 {
         boolean managerBAsked = true;
         boolean managerCAsked = true;
 
-        if ((managerAAsked) && (managerBAsked) && (managerCAsked)) {
-            System.out.println("Feature in progress.");
-        } else if ((managerAAsked) && (managerBAsked) ||
-                (managerAAsked) && (managerCAsked) ||
-                (managerBAsked) && (managerCAsked)) {
-            System.out.println("Adding feature to schedule.");
-        } else if ((managerAAsked) || (managerBAsked) || (managerCAsked)) {
-            System.out.println("Going to hold off for a bit.");
-        } else {
-            System.out.println("Nothing to do...");
-        }
-    }
-
         // 1. Add decisions statements to cover all scenarios.
         // 2. Change manager variables to test all scenarios.
+    }
 }

@@ -15,15 +15,6 @@ public class Exercise18 {
         System.out.print("End: ");
         int end = Integer.parseInt(console.nextLine());
 
-        String result = "";
-
-        for (int i = 0; i < phrase.length(); i++) {
-            if (i < start || i > end) {
-                result += phrase.charAt(i);
-            }
-        }
-        System.out.println(result);
-
         // 1. Write a loop to create a new string from a phrase by "cutting out" any characters from the start index
         // to the end index.
         // 2. Print the result.

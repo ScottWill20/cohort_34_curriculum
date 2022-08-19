@@ -5,7 +5,5 @@ public class Exercise19 {
         System.out.println(message);
         // 1. Print the length of the message below.
         // Leave existing code intact.
-        int characterCount = message.length();
-        System.out.println("Character Count = " + characterCount);
     }
 }

@@ -12,12 +12,6 @@ public class Exercise13 {
         System.out.print("Haystack: ");
         String haystack = console.nextLine();
 
-        if (haystack.contains(needle)) {
-            System.out.println("Needle in the haystack!");
-        } else {
-            System.out.println("No needle in the haystack.");
-        }
-
         // 1. Given two string variables: needle and haystack, determine if haystack contains needle.
         // Examples
         // needle  haystack contains?
