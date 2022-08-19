@@ -13,6 +13,7 @@ public class Exercise09 {
         String[] haystack = new String[100];
         int index = (int) (Math.random() * haystack.length);
         haystack[index] = "needle";
+        System.out.println("The needle is at index " + index);
         return haystack;
     }
 }
