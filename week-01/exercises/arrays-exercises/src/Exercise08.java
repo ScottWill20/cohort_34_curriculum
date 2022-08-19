@@ -1,6 +1,7 @@
 import java.util.Random;
 
 public class Exercise08 {
+ // help
 
     // 1. Create a method.
     // Name: sumArray
