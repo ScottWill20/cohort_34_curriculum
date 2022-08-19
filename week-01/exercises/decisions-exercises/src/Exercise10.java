@@ -21,5 +21,38 @@ public class Exercise10 {
         // If a lbs/zone combo does not exist, print a warning message for the user.
 
         Scanner console = new Scanner(System.in);
+
+        System.out.print("Enter the parcel weight: ");
+        int lbs = Integer.parseInt(console.nextLine());
+        System.out.print("Enter the zone number: ");
+        int zone = Integer.parseInt(console.nextLine());
+
+        if ((lbs > 5) || (lbs < 1)) {
+            System.out.println("That weight is not valid. Try again.");
+        } else if ((zone > 3) || (zone < 1)){
+            System.out.println("That zone is not valid. Try again.");
+        } else if (((zone == 1) || (zone == 2)) && (lbs == 1)) {
+            System.out.println("Parcel rate: $7.50");
+        } else if (((zone == 1) || (zone == 2)) && (lbs == 2)) {
+            System.out.println("Parcel rate: $8.25");
+        } else if (((zone == 1) || (zone == 2)) && (lbs == 3)) {
+            System.out.println("Parcel rate: $8.70");
+        } else if (((zone == 1) || (zone == 2)) && (lbs == 4)) {
+            System.out.println("Parcel rate: $9.20");
+        } else if (((zone == 1) || (zone == 2)) && (lbs == 5)) {
+            System.out.println("Parcel rate: $10.20");
+        } else if ((zone == 3) && (lbs == 1)) {
+            System.out.println("Parcel rate: $7.85");
+        } else if ((zone == 3) && (lbs == 2)) {
+            System.out.println("Parcel rate: $8.70");
+        } else if ((zone == 3) && (lbs == 3)) {
+            System.out.println("Parcel rate: $9.70");
+        } else if ((zone == 3) && (lbs == 4)) {
+            System.out.println("Parcel rate: $10.55");
+        } else if ((zone == 3) && (lbs == 5)) {
+            System.out.println("Parcel rate: $11.30");
+        } else {
+            System.out.println("That zone/weight does not exist. Try again.");
+        }
     }
 }

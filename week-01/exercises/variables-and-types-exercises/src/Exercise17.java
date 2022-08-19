@@ -8,5 +8,6 @@ public class Exercise17 {
 
         String adjective = "happy";
         String noun = "moon";
+        System.out.println(adjective + " " + noun);
     }
 }
