@@ -42,7 +42,9 @@ public class CapsuleHotel {
 
         } while (!exit);
 
-    } // this closes main method
+    }
+
+    // this closes main method
     // welcome method that contains
 
     public static int welcome(Scanner console) {
@@ -66,6 +68,7 @@ public class CapsuleHotel {
         boolean exitNum = false;
         boolean exitName = false;
 
+        System.out.println();
         System.out.println("Check In");
         System.out.println("========");
 
@@ -80,7 +83,6 @@ public class CapsuleHotel {
             } else {
                 exitName = true;
             }
-
         } while (!exitName);
 
         do {
