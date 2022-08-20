@@ -7,10 +7,9 @@ public class Exercise04 {
 
         String[] oceans = {"Atlantic","Antarctic", "Arctic", "Indian", "Pacific"};
 
-        for (int i = 0; i < oceans.length; i++) {
-            String oceanName = oceans[i];
-            System.out.printf("The ocean at index %s is %s.%n", i, oceanName);
+        for (int index = 0; index < oceans.length; index++) {
+            String oceanName = oceans[index];
+            System.out.printf("The ocean at index %s is %s.%n", index, oceanName);
         }
-
     }
 }
