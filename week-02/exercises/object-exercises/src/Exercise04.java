@@ -8,6 +8,7 @@ public class Exercise04 {
 
         // 1. Add an empty constructor to Musician.
         // 2. Uncomment the code below and make sure it runs.
+
             Musician m = new Musician();
             System.out.print("Musician name: ");
             m.setName(console.nextLine());
