@@ -14,4 +14,7 @@ public class Hero {
     public Power[] getPowers() {
         return powers;
     }
+    public String toLine() {
+        return String.format("name: %s, powers: %s%n", name, powers);
+    }
 }

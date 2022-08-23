@@ -9,6 +9,22 @@ public class Exercise05 {
         Musician[] musicians = new Musician[5];
         musicians[0] = new Musician("Frank Ocean", 10);
 
+
+        for (int i = 0; i < 5; i++) {
+            Musician m = new Musician();
+            System.out.print("Musician name: ");
+            m.setName(console.nextLine());
+            System.out.print("Musician rating: ");
+            int rating = Integer.parseInt(console.nextLine());
+            m.setRating(rating);
+            musicians[i] = m;
+        }
+
+
+        for (int i = 0; i < 5; i++) {
+            System.out.printf("%s: %s%n", musicians[i].getName(), musicians[i].getRating());
+        }
+
         // 1. Use a loop to populate the `musicians` array with your top 5 favorite musicians.
         // (Replace Frank Ocean.)
         // Create musicians from user input. (See Exercise04.)

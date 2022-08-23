@@ -19,23 +19,12 @@ public class Exercise15 {
 
         Hero[] heroes = {
                 new Hero("Iron Man", new Power[]{levitation, flight, blastPower}),
-                new Hero("Dr. Strange", new Power[]{time, magic, new Power("Necromancy")}),
+                new Hero("Dr. Strange", new Power[]{time, magic}),
                 new Hero("Spider-Man", new Power[]{strength, web, sticky})
         };
 
-        for (Hero h : heroes) {
+        System.out.println();
 
-            System.out.print(h.getName() + ": ");
-
-            String delimiter = "";
-            for (Power p : h.getPowers()) {
-                System.out.print(delimiter);
-                delimiter = ", ";
-                System.out.print(p.getName());
-            }
-
-            System.out.println();
-        }
 
         // 2. Instantiate your three favorite super heroes with appropriate powers.
         // 3. Use the `toLine` method to print each hero's details to the console.
