@@ -15,8 +15,13 @@ public class Exercise01 {
         Mortgage mortgage = new Mortgage(250000.0, "abcd-1234-hdre-9898");
         print(mortgage);
 
+        Wallet myWallet = new Wallet(500.0, "Scott's Wallet");
+        print(myWallet);
+
         // 1. Declare a third MoneyStore variable here, either Wallet or Mortgage.
         // 2. Pass it to the `print` method.
+
+
     }
 
     static void print(MoneyStorage storage) {
