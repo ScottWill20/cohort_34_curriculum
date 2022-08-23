@@ -15,6 +15,12 @@ public class Hero {
         return powers;
     }
     public String toLine() {
-        return String.format("name: %s, powers: %s%n", name, powers);
+        //
+        String[] powerNames = new String[powers.length];
+
+        for (int i = 0; i < powers.length; i++) {
+            powerNames[i] = powers[i].getName();
+        }
+        return String.format("%s (%s)", getName(), String.join(", ", powerNames));
     }
 }

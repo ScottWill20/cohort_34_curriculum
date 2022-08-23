@@ -4,8 +4,11 @@ public class Musician {
 
     public Musician() {
     }
+    public Musician(String name, int rating) {
+        this.name = name;
+        this.rating = rating;
 
-
+    }
     public String getName() {
         return name;
     }
@@ -23,10 +26,6 @@ public class Musician {
     }
 
 
-    public Musician(String name, int rating) {
-        this.name = name;
-        this.rating = rating;
 
-    }
 
 }

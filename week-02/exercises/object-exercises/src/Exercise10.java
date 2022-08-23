@@ -12,23 +12,34 @@ public class Exercise10 {
         Balloon two = new Balloon("yellow");
         Balloon three = new Balloon("blue");
 
-        do {
+        boolean stop = false;
 
+        do {
             System.out.println("Inflate? [y/n]: ");
             if (console.nextLine().equalsIgnoreCase("y")) {
                 one.inflate();
-                // 2. If the user confirms an inflate, inflate each balloon.
-            } else if (console.nextLine().equalsIgnoreCase("y")) {
                 two.inflate();
-            } else if (console.nextLine().equalsIgnoreCase("y")) {
                 three.inflate();
-            } else {
             }
+            System.out.println(one.getPsi());
+            System.out.println(two.getPsi());
+            System.out.println(three.getPsi());
 
+            if (one.isExploded() || two.isExploded() || three.isExploded()) {
+                stop = true;
+            }
             // 3. When one or more balloons explode, stop the loop.
-        } while (false);
+        } while (!stop);
 
-
+        if (one.isExploded()) {
+            System.out.println(one.getColor());
+        }
+        if (two.isExploded()) {
+            System.out.println(two.getColor());
+        }
+        if (three.isExploded()) {
+            System.out.println(three.getColor());
+        }
         // 4. Print the color of the winners (balloons that exploded).
     }
 }

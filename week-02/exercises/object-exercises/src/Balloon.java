@@ -7,6 +7,9 @@ public class Balloon {
     }
 
     public double getPsi() {
+        if (this.psi > 16) {
+            return Double.POSITIVE_INFINITY;
+        }
         return psi;
     }
     public String getColor() {
@@ -16,9 +19,11 @@ public class Balloon {
     public void inflate(){
         this.psi = this.psi + Math.random() * 5.0;
     }
-
     public boolean isExploded() {
-        return psi > 16;
+        if (this.psi > 16.0) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -17,16 +17,21 @@ public class Exercise15 {
         Power web = new Power("Web-Swinging");
         Power sticky = new Power("Climb on Anything");
 
-        Hero[] heroes = {
-                new Hero("Iron Man", new Power[]{levitation, flight, blastPower}),
-                new Hero("Dr. Strange", new Power[]{time, magic}),
-                new Hero("Spider-Man", new Power[]{strength, web, sticky})
-        };
 
-        System.out.println();
+        Hero iron = new Hero("Iron Man", new Power[]{levitation, flight, blastPower});
+        Hero strange = new Hero("Dr. Strange", new Power[]{time, magic});
+        Hero spider = new Hero("Spider-Man", new Power[]{strength, web, sticky});
 
+        System.out.println(iron.toLine());
+        System.out.println(strange.toLine());
+        System.out.println(spider.toLine());
 
         // 2. Instantiate your three favorite super heroes with appropriate powers.
         // 3. Use the `toLine` method to print each hero's details to the console.
+
+
+
+
+
     }
 }

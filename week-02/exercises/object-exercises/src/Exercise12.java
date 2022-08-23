@@ -11,7 +11,7 @@ public class Exercise12 {
                 new Power("Invisibility"),
                 new Power("Strength"),
                 new Power("Laser Beam Eyes"),
-                new Power("Shapeshifting")
+                new Power("Shape-shifting")
         };
 
         for (int i = 0; i < powers.length; i++) {
@@ -25,6 +25,7 @@ public class Exercise12 {
 //        Strength
 //        Laser Beam Eyes
 //        Shapeshifting
+
     }
 }
 

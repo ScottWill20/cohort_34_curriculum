@@ -10,8 +10,9 @@ public class Exercise04 {
         // 2. Uncomment the code below and make sure it runs.
 
         boolean end = false;
-        Musician m = new Musician();
+        Musician m;
         do {
+            m = new Musician();
             System.out.print("Musician name: ");
             String name = console.nextLine();
             if (name.equals("end")) {
