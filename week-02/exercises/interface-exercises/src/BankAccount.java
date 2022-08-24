@@ -1,11 +1,11 @@
 public class BankAccount implements MoneyStorage {
 
     private double balance;
-    private String accountNumber;
+    private String description;
 
     public BankAccount(double startingBalance, String accountNumber) {
         this.balance = startingBalance;
-        this.accountNumber = accountNumber;
+        this.description = accountNumber;
     }
 
     @Override
@@ -15,11 +15,7 @@ public class BankAccount implements MoneyStorage {
 
     @Override
     public String getDescription() {
-        return String.format("Bank Account #: %s", accountNumber);
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
+        return String.format("Bank Account #: %s", description);
     }
 
     @Override
@@ -33,11 +29,12 @@ public class BankAccount implements MoneyStorage {
     @Override
     public double withdraw(double amount) {
         // can overdraft, up to 25 dollars
-
-        if (!(amount > balance)) {
-            double result = Math.min(amount, balance);
-            balance -= result;
+        if (balance - amount < - 25.0) {
+            double amountToReturn = balance + amount;
+            balance = - 25.0;
+            return amountToReturn;
         }
+        balance -= amount;
         return amount;
 
     }
