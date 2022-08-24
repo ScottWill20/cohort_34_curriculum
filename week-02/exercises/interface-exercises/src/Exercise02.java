@@ -29,10 +29,10 @@ public class Exercise02 {
         // [Some description]: [balance]
     }
 
-    static void printAll(MoneyStorage[] storages) {
-        for (MoneyStorage index : storages) {
-            System.out.print(index.getDescription() + ": ");
-            System.out.println(index.getBalance() + ": ");
+    static void printAll(MoneyStorage[] moneyStorages) {
+        for (MoneyStorage storage : moneyStorages) {
+            System.out.print(storage.getDescription() + ": ");
+            System.out.println(storage.getBalance() + ": ");
         }
 
     }

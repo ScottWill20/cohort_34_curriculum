@@ -8,6 +8,8 @@ public class Vault implements MoneyStorage {
         this.description = description;
     }
 
+    public Vault(){}
+
     @Override
     public double getBalance() {
         return balance;
@@ -29,13 +31,13 @@ public class Vault implements MoneyStorage {
     @Override
     public double withdraw(double amount) {
         // can't withdraw a negative amount
-        if (amount <= 0.0) {
-            return 0.0;
+        if (balance - amount < 0.0) {
+            double amountToReturn = balance;
+            balance = 0;
+            return amountToReturn;
+        } else {
+            balance -= amount;
+            return amount;
         }
-
-        double result = Math.min(amount, balance);
-        balance -= result;
-        return result;
     }
-
 }
