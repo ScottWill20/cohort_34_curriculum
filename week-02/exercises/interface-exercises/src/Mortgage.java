@@ -29,11 +29,11 @@ public class Mortgage implements MoneyStorage {
 
     @Override
     public boolean deposit(double amount) {
-        if (amount <= 0) {
-            return false;
+        if (amount > 0.0) {
+            balance += amount;
+            return true;
         }
-        balance = Math.min(0.0, balance + amount);
-        return true;
+        return false;
     }
 
     @Override

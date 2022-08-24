@@ -2,7 +2,7 @@ public class Exercise04 {
 
     public static void main(String[] args) {
         // 1. Replace `null` with a new Vault. Initialize its balance to zero.
-        MoneyStorage storage = null;
+        MoneyStorage storage = new Vault(0.0, "New Vault");
 
         // 2. Run Exercise04.
         // The only output allowed is: Success!
@@ -58,9 +58,9 @@ public class Exercise04 {
         System.out.println("Success!");
     }
 
-    static boolean withinThreshold(double expected, double actual, double thresold) {
+    static boolean withinThreshold(double expected, double actual, double threshold) {
         double delta = expected - actual;
         delta = Math.abs(delta);
-        return delta < thresold;
+        return delta < threshold;
     }
 }
