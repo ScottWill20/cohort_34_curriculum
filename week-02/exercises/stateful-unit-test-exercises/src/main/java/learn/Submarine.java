@@ -23,7 +23,7 @@ public class Submarine {
     }
 
     public void dive() {
-        depthInMeters + 3;
+       ; + 3;
         // 1. Each dive should increase the depth by 3 meters.
         depthInMeters < maxDepth;
         // Depth cannot exceed maxDepth.
