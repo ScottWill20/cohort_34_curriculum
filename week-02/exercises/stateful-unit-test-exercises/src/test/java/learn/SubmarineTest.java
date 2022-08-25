@@ -1,12 +1,20 @@
 package learn;
 
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.html.HTMLDivElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubmarineTest {
 
     Submarine submarine = new Submarine(100.0);
+
+    @Test
+    void eachDiveIncreaseDepthThreeMeters() {
+        double divedepth = 3;
+        Submarine sub1 = new Submarine(100);
+        assertEquals(3,divedepth);
+    }
 
     @Test
     void shouldHaveCorrectDepthAfter3Dives() {

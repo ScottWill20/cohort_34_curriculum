@@ -95,7 +95,7 @@ class BicycleTest {
         assertEquals("Anonymous", bike.getCyclist().getName());
         assertEquals(Cyclist.MIN_POWER, bike.getCyclist().getPower());
     }
-    
+
     @Test
     void getCyclist() {
     }
