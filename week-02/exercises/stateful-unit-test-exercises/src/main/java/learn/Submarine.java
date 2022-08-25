@@ -12,7 +12,7 @@ public class Submarine {
 
     private final double maxDepth;
     private double depthInMeters;
-    private int atmo;
+
 
     public Submarine(double maxDepth) {
         this.maxDepth = maxDepth;
@@ -23,27 +23,32 @@ public class Submarine {
     }
 
     public void dive() {
-       ; + 3;
-        // 1. Each dive should increase the depth by 3 meters.
-        depthInMeters < maxDepth;
-        // Depth cannot exceed maxDepth.
-        return depthInMeters + 3;
-    }
+        double result = depthInMeters + 3;
 
+        if (result > maxDepth) {
+            depthInMeters =maxDepth;
+        } else {
+            depthInMeters = result;
+        }
+    }
     public void surface() {
-        depthInMeters - 5;
-        // 2. Each surface should decrease the depth by 5 meters.
-        depthInMeters <= 0.0;
+        double result = depthInMeters -5;
+        if (result < 0) {
+            depthInMeters = 0;
+        } else {
+            depthInMeters = result;
+        }
         // Minimum depth is 0.0 (sea level).
+        // 2. Each surface should decrease the depth by 5 meters.
+
     }
 
     public double getPressureInAtmospheres() {
-        double sealevel = 0.0;
-        int atmo = 1;
+        double result = 1.0;
+        result = result + (depthInMeters / 10);
+        return result;
+
         // 3. At sea level, pressure is 1 atmosphere.
-
-        // Pressure increases by 1 atmosphere for every 10 meters.
-        return 0.0;
+        // Pressure increases by 1 atmosphere for every 10 meters
     }
-
 }

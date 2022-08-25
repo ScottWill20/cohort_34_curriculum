@@ -27,7 +27,12 @@ public class Order {
     public double getTotal() {
         // 1. Complete the getTotal method.
         // It should calculate the order's grand total by summing totals from each LineItem.
-        return 0.0;
+        double total = 0.0;
+        for (LineItem item : getLineItems()) {
+            total += item.getPrice() * item.getQuantity();
+        }
+
+        return total;
     }
 
     public boolean add(LineItem lineItem) {

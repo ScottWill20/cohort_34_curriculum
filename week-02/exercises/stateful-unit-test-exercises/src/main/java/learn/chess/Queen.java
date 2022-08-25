@@ -51,6 +51,24 @@ public class Queen {
         // - Otherwise, the absolute difference between row parameter and field
         //   and the absolute difference between the column parameter and field must be the same.
         //   That represents a diagonal move.
-        return false;
+
+        if ((this.row == row) && (this.column == column)) {
+            return false;
+        } else if ((row<0) || (row>7) || (column<0) || (column>7)) {
+            return false;
+        } else if (((Math.abs(this.row-row)) != (Math.abs(this.column - column)))) {
+            if (row == this.row) {
+                this.row = row;
+                return true;
+            } else if (column == this.column) {
+                this.column = column;
+                return true;
+            } else {
+                return false;
+            }
+        }
+        this.row = row;
+        this.column = column;
+        return true;
     }
 }
