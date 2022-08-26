@@ -41,11 +41,6 @@ public class Knight {
         }
         // bad move
         return false;
-
-
-
-
-
     }
 
 
