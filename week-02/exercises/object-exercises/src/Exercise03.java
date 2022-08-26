@@ -12,6 +12,10 @@ public class Exercise03 {
 
         System.out.println(one.getName());
 
+        one.setName("Kendrick Lamar");
+
+        System.out.println(one.getName());
+
         // Expected Output
         // Frank Ocean
         // [Your Favorite Musician]

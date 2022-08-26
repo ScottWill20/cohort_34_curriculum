@@ -3,7 +3,7 @@ package learn.commerce;
 import java.util.Objects;
 
 /**
- * An product or service that's part of an Order.
+ * A product or service that's part of an Order.
  * Could represent anything with a price and quantity.
  * Examples:
  * new LineItem("Grass Seed", 25.49, 1)

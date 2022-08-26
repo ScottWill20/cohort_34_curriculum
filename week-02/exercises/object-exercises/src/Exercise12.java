@@ -6,18 +6,18 @@ public class Exercise12 {
         // 2. Fix any errors by editing the Power class.
         // 3. Confirm the output matches Expected Output.
 
-//        Power[] powers = {
-//                new Power("Flight"),
-//                new Power("Invisibility"),
-//                new Power("Strength"),
-//                new Power("Laser Beam Eyes"),
-//                new Power("Shapeshifting")
-//        };
-//
-//        for (int i = 0; i < powers.length; i++) {
-//            Power p = powers[i];
-//            System.out.println(p.getName());
-//        }
+        Power[] powers = {
+                new Power("Flight"),
+                new Power("Invisibility"),
+                new Power("Strength"),
+                new Power("Laser Beam Eyes"),
+                new Power("Shape-shifting")
+        };
+
+        for (int i = 0; i < powers.length; i++) {
+            Power p = powers[i];
+            System.out.println(p.getName());
+        }
 
 //        Expected Output:
 //        Flight
@@ -25,6 +25,7 @@ public class Exercise12 {
 //        Strength
 //        Laser Beam Eyes
 //        Shapeshifting
+
     }
 }
 

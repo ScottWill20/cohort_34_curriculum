@@ -1,6 +1,7 @@
 import learn.BoardGame;
 import learn.GameRepository;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Exercise04 {
@@ -8,6 +9,17 @@ public class Exercise04 {
     public static void main(String[] args) {
 
         ArrayList<BoardGame> games = GameRepository.getAll();
+
+        ArrayList<BoardGame> threeGames = new ArrayList<>();
+        threeGames.add(new BoardGame());
+        threeGames.add(new BoardGame());
+        threeGames.add(new BoardGame());
+        printAll(threeGames);
+
+        games.addAll(threeGames);
+        printAll(games);
+
+
 
         // 1. Instantiate a new ArrayList<BoardGame>.
         // 2. Add three BoardGames to the new list.

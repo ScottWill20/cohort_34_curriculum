@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class VehicleRepository {
 
@@ -36,4 +37,14 @@ public class VehicleRepository {
 
         return result;
     }
+
+    // Helper Methods
+    public static void printAll(HashMap<String, Vehicle> hashMap){
+        for (Map.Entry<String, Vehicle> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
+    }
+
+
 }

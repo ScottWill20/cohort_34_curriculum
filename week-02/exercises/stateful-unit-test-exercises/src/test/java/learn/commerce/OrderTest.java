@@ -35,7 +35,29 @@ class OrderTest {
     }
 
     // 1. Add test shouldNotAddInvalidItems: confirm that it's not possible to add items with <= 0 quantity or < 0 price.
+
+    @Test
+    void shouldNotAddInvalidItems() {
+        assertFalse(order.add(new LineItem("fake item 1", -1, 2)));
+        assertFalse(order.add(new LineItem("fake item 2", 0, -2)));
+        assertFalse(order.add(new LineItem("fake item 3", -1, 0)));
+    }
+
     // 2. Test the order.getTotal() in various scenarios and confirm it's correct.
-    // 3. If you tackle `order.remove`, test the method thoroughly.
+
+    @Test
+    void shouldGetTotal() {
+        order = new Order(2);
+
+        order.add(new LineItem("test one", 2.0, 1.0));
+        assertEquals(2.0, order.getTotal()); // the total is 2
+
+        order.add(new LineItem("test two", 20.0, 2.0));
+        assertEquals(42.0, order.getTotal()); // the total is 42
+
+
+
+    }
+
 
 }
