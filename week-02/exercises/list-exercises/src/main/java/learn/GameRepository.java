@@ -22,5 +22,7 @@ public class GameRepository {
                 new BoardGame("Coup", 2, 6, "Bluffing"),
                 new BoardGame("Machi Koro", 2, 4, "City Building")
         ));
+
+
     }
 }
