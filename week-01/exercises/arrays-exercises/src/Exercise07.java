@@ -4,13 +4,6 @@ public class Exercise07 {
 
     public static void main(String[] args) {
         int[] values = makeRandomArray();
-        int arraySize = values.length;
-        int sum = 0;
-        for (int i = 0; i < values.length; i++) {
-            sum = sum + values[i];
-        }
-        System.out.println("Sum = " + sum);
-        System.out.println("The length of this array is " + arraySize + ".");
 
         // The makeRandomArray method returns an int[] of a length between 50 and 150, whose elements are randomly
         // generated between -500 and 500.

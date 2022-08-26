@@ -22,24 +22,6 @@ public class Exercise14 {
             case 1:
                 System.out.println("I refuse to say \"a case of the Mondays\".");
                 break;
-            case 2:
-                System.out.println("Tuesday is a good day, you survived Monday.");
-                break;
-            case 3:
-                System.out.println("Hey, you're halfway through the week!");
-                break;
-            case 4:
-                System.out.println("Thursdays, am I right?");
-                break;
-            case 5:
-                System.out.println("Friday is my second favorite F word. Food is my first.");
-                break;
-            case 6:
-                System.out.println("I really need a day between Saturday and Sunday.");
-                break;
-            case 7:
-                System.out.println("Sunday: The day I planned a lot but actually do nothing.");
-                break;
             default:
                 System.out.println("I don't recognize that day.");
                 break;

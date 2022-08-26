@@ -16,12 +16,6 @@ public class Exercise12 {
         System.out.print("Enter the third value: ");
         int third = Integer.parseInt(console.nextLine());
 
-        if ((first < second) && (second < third)) {
-            System.out.println("values are in order.");
-        } else {
-            System.out.println("values are not in order.");
-        }
-
         // 1. Add decisions statements to determine if first, second, and third are in order.
         // 2. Print messages for both ordered and unordered cases.
     }
