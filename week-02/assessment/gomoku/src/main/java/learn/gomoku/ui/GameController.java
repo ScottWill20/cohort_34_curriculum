@@ -131,14 +131,16 @@ public class GameController {
 
                 Result result = game.place(placeStone);
 
-                board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
+                // board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'X' : 'O';
 
                 // If the result is not successful
                 // then we want to print a message
 
                 if (!result.isSuccess()){
                     System.out.println("ERROR: " + result.getMessage());
-                } else;
+                } else {
+                    board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
+                }
 
             } else { // Random Player
 
@@ -148,11 +150,13 @@ public class GameController {
 
                 Result result = game.place(placeStone);
 
-                board[stone.getRow()][stone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
+                // board[stone.getRow()][stone.getColumn()] = game.isBlacksTurn() ? 'X' : 'O';
 
                 if (!result.isSuccess()){
                     System.out.println("ERROR: " + result.getMessage());
-                } else;
+                } else {
+                    board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
+                }
             }
         } while(!game.isOver());
 
