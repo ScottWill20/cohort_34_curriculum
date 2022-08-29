@@ -114,12 +114,15 @@ public class GameController {
 
     private void play() { // uses printBoard, readInt (for row and column)
         System.out.println(game.getCurrent().getName() + " goes first!");
+
         do{
             printBoard();
             System.out.println();
             Stone stone = game.getCurrent().generateMove(game.getStones());
 
-            if (stone == null) { // Human Player
+            Stone placeStone; // TODO initialized the placed stone outside the if/else to cut bloat
+            if (stone == null) {
+
                 System.out.printf("%s, it's your turn!%n", game.getCurrent().getName()); // displaying name of the current player
                 System.out.print("Enter Row: ");
                 int row = Integer.parseInt(console.nextLine()) - 1;
@@ -127,40 +130,30 @@ public class GameController {
                 System.out.print("Enter Column: ");
                 int column = Integer.parseInt(console.nextLine()) - 1;
 
-                Stone placeStone = new Stone(row,column, game.isBlacksTurn());
+                placeStone = new Stone(row, column, game.isBlacksTurn());
 
-                Result result = game.place(placeStone);
-
-                // board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'X' : 'O';
-
-                // If the result is not successful
-                // then we want to print a message
-
-                if (!result.isSuccess()){
-                    System.out.println("ERROR: " + result.getMessage());
-                } else {
-                    board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
-                }
-
-            } else { // Random Player
+            } else {
 
                 System.out.printf("%s, it's your turn!%n", game.getCurrent().getName()); // displaying name of the current player
 
-                Stone placeStone = new Stone(stone.getRow(), stone.getColumn(), game.isBlacksTurn());
-
-                Result result = game.place(placeStone);
-
-                // board[stone.getRow()][stone.getColumn()] = game.isBlacksTurn() ? 'X' : 'O';
-
-                if (!result.isSuccess()){
-                    System.out.println("ERROR: " + result.getMessage());
-                } else {
-                    board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
-                }
+                placeStone = new Stone(stone.getRow(), stone.getColumn(), game.isBlacksTurn());
             }
-        } while(!game.isOver());
 
-        printBoard();
+            Result result = game.place(placeStone); // TODO pulled the result outside the if/else - bloat
+
+            if (!result.isSuccess()){ // TODO pulled duplicate statement out of above if/else - bloat
+                System.out.println("ERROR: " + result.getMessage());
+            } else if (result.isSuccess() && game.isOver()){
+               board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'X' : 'O'; //
+                // TODO game.place(placeStone), on an end game condition (place.isWin/.isDraw), will swap players before I can print the board in the console. So it always printed the opposite symbol
+                // TODO I created an else if that simply swapped the character that gets printed to my board if the game is over
+            }
+            else {
+                board[placeStone.getRow()][placeStone.getColumn()] = game.isBlacksTurn() ? 'O' : 'X';
+            }
+        } while (!game.isOver());
+
+        printBoard(); // TODO moved printBoard() outside the do/while - bloat
         if (game.getWinner() != null) {
             System.out.println();
             System.out.println(game.getWinner().getName() + " wins!");
