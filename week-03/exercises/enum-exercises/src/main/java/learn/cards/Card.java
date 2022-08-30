@@ -1,12 +1,43 @@
 package learn.cards;
 
+import learn.cards.Rank;
+import learn.cards.Suit;
 public class Card {
 
     // 1. Add a Suit and Rank field to the Card class.
+    public String suit;
+    public String rank;
+
     // 2. Add a constructor that accepts a Suit and Rank and sets the appropriate fields.
+
+    public Card(String suit, String rank) {
+        this.suit = suit;
+        this.rank = rank;
+    }
+
+
     // 3. Add getters for both suit and rank.
 
-    public String getName() {
+    public String getSuit() {
+        return suit;
+    }
+
+    public void setSuit(String suit) {
+        this.suit = suit;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public Card getName(String suit, String rank) {
+
+        }
+
 
         // 4. Complete the getName method.
         // Given a card's suit and rank, getName returns a String in the format:
