@@ -1,6 +1,7 @@
 package learn.poker;
 
 import learn.cards.Card;
+import learn.cards.Rank;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +13,6 @@ class TwoCardHandTest {
     // 3. Run the tests and confirm they pass. Do NOT edit existing assertions.
     // 4. Add a couple more tests to confirm everything is working as intended.
 
-    /*
     @Test
     void twoQueensShouldBeatTwo10s() {
         // TODO: instantiate Cards and TwoCardHands with appropriate arguments
@@ -61,6 +61,5 @@ class TwoCardHandTest {
         assertEquals(0, firstJackFour.compareTo(secondJackFour));
     }
 
-     */
 
 }
