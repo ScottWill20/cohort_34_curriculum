@@ -3,9 +3,7 @@ package learn.venus.data;
 import learn.venus.models.Orbiter;
 import learn.venus.models.OrbiterType;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class OrbiterFileRepository {
         this.filePath = filePath;
     }
 
-    public List<Orbiter> findAll() {
+    public List<Orbiter> findAll() throws DataAccessException {
         ArrayList<Orbiter> result = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             reader.readLine(); // ignores the header
@@ -34,13 +32,15 @@ public class OrbiterFileRepository {
                     result.add(orbiter);
                 }
             }
+        } catch (FileNotFoundException ex) {
+            // okay to ignore
         } catch (IOException ex) {
-            // do nothing?
+            throw new DataAccessException(ex.getMessage(),ex);
         }
         return result;
     }
 
-    public Orbiter findById(int orbiterId) {
+    public Orbiter findById(int orbiterId) throws DataAccessException {
         for (Orbiter orbiter : findAll()) {
             if (orbiter.getOrbiterId() == orbiterId) {
                 return orbiter;
@@ -49,7 +49,7 @@ public class OrbiterFileRepository {
         return null;
     }
 
-    public List<Orbiter> findByType(OrbiterType type) {
+    public List<Orbiter> findByType(OrbiterType type) throws DataAccessException {
         ArrayList<Orbiter> result = new ArrayList<>();
         for (Orbiter orbiter : findAll()) {
             if (orbiter.getType() == type) {
@@ -59,4 +59,65 @@ public class OrbiterFileRepository {
         return result;
     }
 
+    public Orbiter add(Orbiter orbiter) throws DataAccessException {
+        // grab all orbiters
+        List<Orbiter> all = findAll();
+        // create next ID
+        int nextId = 0;
+        for (Orbiter o : all) {
+            nextId = Math.max(nextId, o.getOrbiterId());
+        }
+        nextId++;
+        orbiter.setOrbiterId(nextId);
+        // add new orbiter to all
+        all.add(orbiter);
+        // save
+        writeAll(all);
+        return orbiter;
+    }
+
+
+
+    private void writeAll(List<Orbiter> orbiters) throws DataAccessException {
+        try(PrintWriter writer = new PrintWriter(filePath)) {
+            writer.println("orbiterId,name,type,sponsor"); // print header
+            for (Orbiter o: orbiters) {
+                writer.println(serialize(o));
+            }
+        } catch (IOException ex) {
+            throw new DataAccessException(ex.getMessage(), ex);
+            }
+        }
+
+    private String serialize(Orbiter orbiter) {
+        return String.format("%s,%s,%s,%s",
+                orbiter.getOrbiterId(),
+                orbiter.getName(),
+                orbiter.getType(),
+                orbiter.getSponsor());
+    }
+
+    public boolean update(Orbiter orbiter) throws DataAccessException {
+        List<Orbiter> all = findAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getOrbiterId() == orbiter.getOrbiterId()) {
+                all.set(i,orbiter);
+                writeAll(all);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteById(int orbiterId) throws DataAccessException {
+        List<Orbiter> all = findAll();
+        for (int i = 0; i < all.size(); i++) {
+            if (all.get(i).getOrbiterId() == orbiterId) {
+                all.remove(i);
+                writeAll(all);
+                return true;
+            }
+        }
+        return false;
+    }
 }
