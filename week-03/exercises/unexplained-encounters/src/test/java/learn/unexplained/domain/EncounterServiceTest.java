@@ -6,6 +6,8 @@ import learn.unexplained.models.Encounter;
 import learn.unexplained.models.EncounterType;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EncounterServiceTest {
@@ -54,7 +56,7 @@ class EncounterServiceTest {
 
     @Test
     void shouldNotAddDuplicate() throws DataAccessException {
-        Encounter encounter = new Encounter(0, EncounterType.CREATURE, "1/1/2015", "test description", 1);
+        Encounter encounter = new Encounter(5, EncounterType.UFO, "Test Date 2", "Test Description 2", 2);
         EncounterResult expected = makeResult("duplicate encounter is not allowed");
         EncounterResult actual = service.add(encounter);
         assertEquals(expected, actual);
@@ -75,4 +77,59 @@ class EncounterServiceTest {
         result.addErrorMessage(message);
         return result;
     }
+
+    @Test
+    void shouldFindByType () throws DataAccessException {
+        List<Encounter> ufos = service.findByType(EncounterType.UFO);
+        assertNotNull(ufos);
+        assertEquals(1, ufos.size());
+    }
+
+    @Test
+    void shouldUpdate() throws DataAccessException {
+        EncounterResult result = service.update(
+                new Encounter(3, EncounterType.SOUND, "2022-04-04 11:00 PM", "test", 1));
+                assertTrue(result.isSuccess());
+    }
+
+    @Test
+    void shouldNotUpdateEmptyWhen() throws DataAccessException {
+        EncounterResult result = service.update(
+                new Encounter(3, EncounterType.SOUND, "         ", "Test Description", 1));
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void shouldNotUpdateEmptyDescription () throws DataAccessException {
+        EncounterResult result = service.update(
+                new Encounter(3, EncounterType.SOUND, "2022-04-04 11:00 PM", "          ", 1));
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void shouldNotUpdateZeroOccurrences() throws DataAccessException {
+        EncounterResult result = service.update(
+                new Encounter(3, EncounterType.SOUND, "2022-04-04 11:00 PM", "          ", 0));
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void shouldNotUpdateNonExistentEncounter() throws DataAccessException {
+        EncounterResult result = service.update(
+                new Encounter(99, EncounterType.SOUND, "2022-04-04 11:00 PM", "          ", 1));
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void shouldDeleteById() throws DataAccessException {
+        EncounterResult result = service.deleteById(12);
+        assertTrue(result.isSuccess());
+    }
+
+    @Test
+    void shouldNotDelete() throws DataAccessException {
+        EncounterResult result = service.deleteById(10);
+        assertFalse(result.isSuccess());
+    }
+
 }
