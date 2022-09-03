@@ -3,6 +3,7 @@ package solarfarm.data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import solarfarm.models.SolarPanel;
+import solarfarm.models.SolarPanelKey;
 import solarfarm.models.SolarPanelMaterial;
 
 import java.io.IOException;
@@ -56,19 +57,95 @@ class SolarPanelFileRepositoryTest {
         assertNotNull(flats);
         assertEquals(5,flats.size());
 
+    }
 
+    @Test
+    void shouldCreate() throws DataAccessException {
+        SolarPanel solarPanel = new SolarPanel(0,"Flats",22,33,2022,SolarPanelMaterial.AMORPHOUS_SILICON,true);
+        SolarPanel actual = repository.create(solarPanel);
+        assertEquals(16,actual.getId());
+        List<SolarPanel> all = repository.findAll();
+        assertEquals(16,all.size());
+
+        SolarPanel idTen = all.get(9);
+        assertEquals(10, idTen.getId());
+        assertEquals("Treeline",idTen.getSection());
+        assertEquals(31, idTen.getRow());
+        assertEquals(21,idTen.getColumn());
+        assertEquals(2016,idTen.getYearInstalled());
+        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,idTen.getMaterial());
+        assertEquals(false,idTen.isTracking());
+
+        SolarPanel idSixteen = all.get(15);
+        assertEquals(16, idSixteen.getId());
+        assertEquals("Flats",idSixteen.getSection());
+        assertEquals(22, idSixteen.getRow());
+        assertEquals(33,idSixteen.getColumn());
+        assertEquals(2022,idSixteen.getYearInstalled());
+        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,idSixteen.getMaterial());
+        assertEquals(true,idSixteen.isTracking());
+    }
+
+    @Test
+    void shouldUpdate() throws DataAccessException {
+        SolarPanel solarPanel = repository.findByKey("The Ridge",2,2);
+        solarPanel.setMaterial(SolarPanelMaterial.AMORPHOUS_SILICON);
+        solarPanel.setYearInstalled(2012);
+        solarPanel.setTracking(false);
+
+        boolean result = repository.update(solarPanel);
+        assertTrue(result);
+
+        solarPanel = repository.findByKey("The Ridge",2,2);
+
+        assertNotNull(solarPanel);
+
+        assertEquals(5,solarPanel.getId());
+        assertEquals("The Ridge",solarPanel.getSection());
+        assertEquals(2,solarPanel.getRow());
+        assertEquals(2,solarPanel.getColumn());
+        assertEquals(2012,solarPanel.getYearInstalled());
+        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,solarPanel.getMaterial());
+        assertEquals(false,solarPanel.isTracking());
 
     }
 
     @Test
-    void create() {
+    void shouldNotUpdateUnknownId() throws DataAccessException {
+        SolarPanel solarPanel = new SolarPanel(
+                16,
+                "The Ridge",
+                99,
+                101,
+                2020,
+                SolarPanelMaterial.MONOCRYSTALLINE_SILICON,
+                true);
+
+        boolean result = repository.update(solarPanel);
+
+        assertFalse(result);
+
     }
 
     @Test
-    void update() {
+    void shouldDelete() throws DataAccessException {
+        boolean result = repository.deleteById(14);
+
+        assertTrue(result);
+
+        List<SolarPanel> all = repository.findAll();
+
+        assertEquals(14,all.size());
+
+        SolarPanel solarPanel = repository.findByKey("Flats",91,81);
+
+        assertNull(solarPanel);
     }
 
     @Test
-    void deleteById() {
+    void shouldNotDeleteUnknownId() throws DataAccessException {
+        boolean result = repository.deleteById(9999);
+
+        assertFalse(result);
     }
 }

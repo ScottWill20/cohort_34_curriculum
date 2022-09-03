@@ -11,8 +11,6 @@ public class SolarPanelKey { // might make it easier to validate in domain that 
         this.row = row;
         this.column = column;
     }
-
-
     public String getSection() {
         return section;
     }

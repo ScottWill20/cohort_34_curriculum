@@ -38,11 +38,24 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
     public List<SolarPanel> findBySection(String section) throws DataAccessException {
         ArrayList<SolarPanel> result = new ArrayList<>();
         for (SolarPanel solarPanel : findAll()) {
-            if (solarPanel.getSection() == section) {
+            if (solarPanel.getSection().contains(section)) {
                 result.add(solarPanel);
             }
         }
         return result;
+    }
+
+    @Override
+    public SolarPanel findByKey(String section, int row, int column) throws DataAccessException {
+        List<SolarPanel> all = findAll();
+        for (SolarPanel solarPanel : all) {
+            if (solarPanel.getSection().contains(section) &&
+            solarPanel.getRow() == row &&
+            solarPanel.getColumn() == column) {
+                return solarPanel;
+            }
+        }
+        return null;
     }
 
     // CREATE
@@ -75,6 +88,7 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
     public boolean deleteById(int solarPanelId) throws DataAccessException {
         List<SolarPanel> all = findAll();
         for (int i = 0; i < all.size(); i++) {
+
             if (all.get(i).getId() == solarPanelId) {
                 all.remove(i);
                 writeToFile(all);
