@@ -5,6 +5,7 @@ import solarfarm.data.SolarPanelRepository;
 import solarfarm.models.SolarPanel;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SolarPanelService {
     private final SolarPanelRepository repository;
@@ -28,6 +29,17 @@ public class SolarPanelService {
             result.addMessage("cannot create existing log entry.");
         }
 
+        List<SolarPanel> solarPanels = repository.findAll();
+        for (SolarPanel s : solarPanels) {
+            if (Objects.equals(solarPanel.getSection(), s.getSection())
+                    && Objects.equals(solarPanel.getRow(), s.getRow())
+                    && Objects.equals(solarPanel.getColumn(), s.getColumn())
+                    && solarPanel.getId() != s.getId()) {
+                result.addMessage("There is already a Solar Panel at that location.");
+                return result;
+            }
+        }
+
         solarPanel = repository.create(solarPanel);
         result.setSolarPanel(solarPanel);
         return result;
@@ -38,10 +50,21 @@ public class SolarPanelService {
         if (!result.isSuccess()) {
             return result;
         }
+
+        List<SolarPanel> solarPanels = repository.findAll();
+        for (SolarPanel s : solarPanels) {
+            if (Objects.equals(solarPanel.getSection(), s.getSection())
+                    && Objects.equals(solarPanel.getRow(), s.getRow())
+                    && Objects.equals(solarPanel.getColumn(), s.getColumn())
+                    && solarPanel.getId() != s.getId()) {
+                result.addMessage("There is already a Solar Panel at that location.");
+                return result;
+            }
+        }
         boolean updated = repository.update(solarPanel);
 
         if (!updated) {
-            result.addMessage(String.format("Solar Panel %s-%s-%s does not exist.",solarPanel.getSection(),solarPanel.getRow(),solarPanel.getColumn()));
+            result.addMessage(String.format("Solar Panel %s-%s-%s does not exist.", solarPanel.getSection(), solarPanel.getRow(), solarPanel.getColumn()));
         }
         return result;
     }

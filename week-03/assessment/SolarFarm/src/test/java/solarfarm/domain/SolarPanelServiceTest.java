@@ -5,7 +5,12 @@ import solarfarm.data.DataAccessException;
 import solarfarm.data.SolarPanelRepository;
 import solarfarm.data.SolarPanelRepositoryDouble;
 import solarfarm.models.SolarPanel;
+import solarfarm.models.SolarPanelKey;
 import solarfarm.models.SolarPanelMaterial;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +35,12 @@ class SolarPanelServiceTest {
         assertFalse(actual.isSuccess());
         assertNull(actual.getSolarPanel());
         assertEquals("Solar Panel entry cannot be null.",actual.getMessages().get(0));
+    }
+    @Test
+    void shouldNotCreateDuplicate() throws DataAccessException {
+        SolarPanelResult actual = service.create(new SolarPanel(0,"The Ridge",1,1,2020,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        assertFalse(actual.isSuccess());
+        assertEquals("There is already a Solar Panel at that location.",actual.getMessages().get(0));
     }
 
     @Test
@@ -86,21 +97,36 @@ class SolarPanelServiceTest {
 //        assertEquals("Material type is required.",actual.getMessages().get(0));
 //    }
 
+    @Test
+    void shouldUpdateExistingSolarPanel() throws DataAccessException {
+        SolarPanel solarPanel = service.findByKey("Treeline",1,2);
+        solarPanel.setYearInstalled(1995);
+
+        SolarPanelResult actual = service.update(solarPanel);
+
+        assertTrue(actual.isSuccess());
+        assertEquals(0,actual.getMessages().size());
+    }
+
+    @Test
+    void shouldNotUpdateToExistingId() throws DataAccessException {
+        SolarPanel solarPanel = service.findByKey("Treeline",1,2);
+        solarPanel.setSection("The Ridge");
+        solarPanel.setColumn(1);
+
+        SolarPanelResult actual = service.update(solarPanel);
+
+        assertFalse(actual.isSuccess());
+        assertEquals(1,actual.getMessages().size());
+    }
+
+
+
+
 
     @Test
     void update() {
     }
 
-    @Test
-    void deleteById() {
-    }
-
-    @Test
-    void findByKey() {
-    }
-
-    @Test
-    void findBySection() {
-    }
 
 }

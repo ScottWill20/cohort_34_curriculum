@@ -1,5 +1,7 @@
 package solarfarm.models;
 
+import java.util.Objects;
+
 public class SolarPanelKey { // might make it easier to validate in domain that keys are the same
     private final String section;
     private final int row;
@@ -25,21 +27,25 @@ public class SolarPanelKey { // might make it easier to validate in domain that 
 
     // TODO OPTIONAL rework hashCode, equals
 
-    /*
+
     @Override
-    public int hashCode(Object obj) {
-        return Object.hash(section,row,column);
+    public int hashCode() {
+        return Objects.hash(section,row,column);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return Object;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SolarPanelKey solarPanelKey = (SolarPanelKey) o;
+        return Objects.equals(section, solarPanelKey.section) &&
+                Objects.equals(row, solarPanelKey.row) &&
+                Objects.equals(column, solarPanelKey.column);
     }
 
-     */
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %s",section,row,column);
+        return String.format("%s-%s-%s",section,row,column);
     }
 }

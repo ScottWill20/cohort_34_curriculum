@@ -2,11 +2,11 @@ package solarfarm.models;
 
 public enum SolarPanelMaterial {
 
-    MULTICRYSTALLINE_SILICON(""),
-    MONOCRYSTALLINE_SILICON(""),
-    AMORPHOUS_SILICON(""),
-    CADMIUM_TELLURIDE(""),
-    COPPER_INDIUM_GALLIUM_SELENIDE("Copper");
+    MULTICRYSTALLINE_SILICON("MultiSi"),
+    MONOCRYSTALLINE_SILICON("MonoSi"),
+    AMORPHOUS_SILICON("AmSi"),
+    CADMIUM_TELLURIDE("CdTe"),
+    COPPER_INDIUM_GALLIUM_SELENIDE("CIGS");
 
 
     private String displayText;
