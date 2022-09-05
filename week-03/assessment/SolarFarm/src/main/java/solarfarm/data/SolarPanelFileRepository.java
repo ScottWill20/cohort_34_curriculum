@@ -30,10 +30,11 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
             }
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {
-            throw new DataAccessException("Could not open file path: " + filePath,ex);
+            throw new DataAccessException("Could not open file path: " + filePath, ex);
         }
         return result;
     }
+
     @Override
     public List<SolarPanel> findBySection(String section) throws DataAccessException {
         ArrayList<SolarPanel> result = new ArrayList<>();
@@ -50,8 +51,8 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         List<SolarPanel> all = findAll();
         for (SolarPanel solarPanel : all) {
             if (solarPanel.getSection().contains(section) &&
-            solarPanel.getRow() == row &&
-            solarPanel.getColumn() == column) {
+                    solarPanel.getRow() == row &&
+                    solarPanel.getColumn() == column) {
                 return solarPanel;
             }
         }
@@ -75,7 +76,7 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         List<SolarPanel> all = findAll();
         for (int i = 0; i < all.size(); i++) {
             if (all.get(i).getId() == solarPanel.getId()) {
-                all.set(i,solarPanel);
+                all.set(i, solarPanel);
                 writeToFile(all);
                 return true;
             }
@@ -99,11 +100,11 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
     }
 
     private String restore(String value) {
-        return value.replace(DELIMITER_REPLACEMENT,DELIMITER);
+        return value.replace(DELIMITER_REPLACEMENT, DELIMITER);
     }
 
-    private String clean (String value) {
-        return  value.replace(DELIMITER,DELIMITER_REPLACEMENT);
+    private String clean(String value) {
+        return value.replace(DELIMITER, DELIMITER_REPLACEMENT);
     }
 
     // HELPER METHODS
@@ -161,10 +162,6 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         }
         return maxId + 1;
     }
-
-
-
-
 
 
 }

@@ -23,10 +23,9 @@ public class SolarPanelRepositoryDouble implements SolarPanelRepository {
         for (SolarPanel solarPanel : findAll()) {
             if (solarPanel.getSection().contains(section)) {
                 result.add(solarPanel);
-                return result;
             }
         }
-        return null;
+        return result;
     }
 
     @Override

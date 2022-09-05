@@ -5,11 +5,8 @@ import solarfarm.data.DataAccessException;
 import solarfarm.data.SolarPanelRepository;
 import solarfarm.data.SolarPanelRepositoryDouble;
 import solarfarm.models.SolarPanel;
-import solarfarm.models.SolarPanelKey;
 import solarfarm.models.SolarPanelMaterial;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,13 +117,44 @@ class SolarPanelServiceTest {
         assertEquals(1,actual.getMessages().size());
     }
 
-
-
-
-
     @Test
-    void update() {
+    void shouldNotUpdateToNonExistingSolarPanel() throws DataAccessException {
+        SolarPanel solarPanel = new SolarPanel(0, "FAKE", 5,5, 1990, SolarPanelMaterial.MONOCRYSTALLINE_SILICON,false);
+        SolarPanelResult actual = service.update(solarPanel);
+
+        assertFalse(actual.isSuccess());
+        assertEquals(1,actual.getMessages().size());
+        assertTrue(actual.getMessages().get(0).contains(String.format("Solar Panel %s-%s-%s does not exist.", solarPanel.getSection(), solarPanel.getRow(), solarPanel.getColumn())));
+
     }
 
+    @Test
+    void shouldFindAllBySection() throws DataAccessException {
+        List<SolarPanel> actual = service.findBySection("The Ridge");
+
+        assertNotNull(actual);
+        assertEquals(1,actual.size());
+    }
+    @Test
+    void shouldNotFindNonExistingSection() throws DataAccessException {
+        List<SolarPanel> actual = service.findBySection("Green Hills Zone");
+
+        assertNotNull(actual);
+        assertEquals(0,actual.size());
+    }
+
+    @Test
+    void shouldDeleteExistingSolarPanel () throws DataAccessException {
+        SolarPanelResult actual = service.deleteById(1);
+
+        assertTrue(actual.isSuccess());
+    }
+
+    @Test
+    void shouldNotDeleteNonExistingSolarPanel() throws DataAccessException {
+        SolarPanelResult actual = service.deleteById(999);
+
+        assertFalse(actual.isSuccess());
+    }
 
 }
