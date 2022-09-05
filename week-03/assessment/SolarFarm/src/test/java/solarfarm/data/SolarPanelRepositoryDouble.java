@@ -11,9 +11,9 @@ public class SolarPanelRepositoryDouble implements SolarPanelRepository {
     @Override
     public List<SolarPanel> findAll() throws DataAccessException {
         ArrayList<SolarPanel> all = new ArrayList<>();
-        all.add(new SolarPanel(1,"The Ridge",1,1,2020, SolarPanelMaterial.MONOCRYSTALLINE_SILICON,true));
-        all.add(new SolarPanel(2,"Treeline",1,2,2021, SolarPanelMaterial.AMORPHOUS_SILICON,true));
-        all.add(new SolarPanel(3, "Flats",1,3,2022,SolarPanelMaterial.CADMIUM_TELLURIDE,false));
+        all.add(new SolarPanel(1,"The Ridge",1,1,2020, SolarPanelMaterial.MONOSI,true));
+        all.add(new SolarPanel(2,"Treeline",1,2,2021, SolarPanelMaterial.AMSI,true));
+        all.add(new SolarPanel(3, "Flats",1,3,2022,SolarPanelMaterial.CDTE,false));
         return all;
     }
 

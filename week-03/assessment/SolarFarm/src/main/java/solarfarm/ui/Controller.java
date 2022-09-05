@@ -33,15 +33,16 @@ public class Controller {
             int selection = view.getMenuOption();
             switch (selection) {
                 case 1:
+                    viewBySection();
                     break;
                 case 2:
                     addSolarPanel();
                     break;
                 case 3:
-
+                    updateSolarPanel();
                     break;
                 case 4:
-
+                    deleteSolarPanel();
                     break;
                 case 5:
                     exit = true;
@@ -50,6 +51,17 @@ public class Controller {
         }
     }
 
+    // READ
+
+    private void viewBySection() throws DataAccessException {
+        String section = view.readSection();
+        List<SolarPanel> solarPanels = service.findBySection(section);
+        if (solarPanels.size() == 0) {
+            System.out.printf("There are no panels in %s.%n", section);
+        } else {
+            view.printSolarPanels(section, solarPanels);
+        }
+    }
 
     // CREATE
     private void addSolarPanel() throws DataAccessException {
@@ -63,7 +75,46 @@ public class Controller {
         }
     }
 
-    // READ
+    private void updateSolarPanel() throws DataAccessException {
+        view.displayHeader("Update a Panel");
+        String section = view.readSection();
+        int row = view.readInt("Row: ",1,250);
+        int column = view.readInt("Column: ",1,250);
+        SolarPanel solarPanel = service.findByKey(section,row,column);
+
+        view.updateSolarPanel(solarPanel);
+
+        SolarPanelResult result = service.update(solarPanel);
+        if (result.isSuccess()) {
+            System.out.println("");
+            view.displayText("Success!");
+            System.out.printf("Panel %s-%s-%s has been updated.",section,row,column);
+            System.out.println("");
+        } else {
+            view.displayErrors(result.getMessages());
+        }
+
+    }
+
+    private void deleteSolarPanel() throws DataAccessException {
+        view.displayHeader("Delete a Panel");
+        String section = view.readSection();
+        int row = view.readInt("Row: ",1,250);
+        int column = view.readInt("Column: ",1,250);
+        SolarPanel solarPanel = service.findByKey(section,row,column);
+
+        SolarPanelResult result = service.deleteById(solarPanel.getId());
+        if (result.isSuccess()) {
+            System.out.println("");
+            view.displayText("Success!");
+            System.out.printf("Panel %s-%s-%s has been deleted.",section,row,column);
+            System.out.println("");
+        } else {
+            view.displayErrors(result.getMessages());
+        }
+
+
+    }
 
 
 }

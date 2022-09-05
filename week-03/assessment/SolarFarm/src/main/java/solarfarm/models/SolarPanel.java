@@ -1,5 +1,7 @@
 package solarfarm.models;
 
+import java.util.List;
+
 public class SolarPanel {
 
     private int id;

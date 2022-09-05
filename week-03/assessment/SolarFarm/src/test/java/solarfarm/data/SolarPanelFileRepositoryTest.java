@@ -3,7 +3,6 @@ package solarfarm.data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import solarfarm.models.SolarPanel;
-import solarfarm.models.SolarPanelKey;
 import solarfarm.models.SolarPanelMaterial;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ class SolarPanelFileRepositoryTest {
         assertEquals(101,solarPanel.getRow());
         assertEquals(91,solarPanel.getColumn());
         assertEquals(2022,solarPanel.getYearInstalled());
-        assertEquals(SolarPanelMaterial.COPPER_INDIUM_GALLIUM_SELENIDE, solarPanel.getMaterial());
+        assertEquals(SolarPanelMaterial.CIGS, solarPanel.getMaterial());
     }
 
     @Test
@@ -61,7 +60,7 @@ class SolarPanelFileRepositoryTest {
 
     @Test
     void shouldCreate() throws DataAccessException {
-        SolarPanel solarPanel = new SolarPanel(0,"Flats",22,33,2022,SolarPanelMaterial.AMORPHOUS_SILICON,true);
+        SolarPanel solarPanel = new SolarPanel(0,"Flats",22,33,2022,SolarPanelMaterial.AMSI,true);
         SolarPanel actual = repository.create(solarPanel);
         assertEquals(16,actual.getId());
         List<SolarPanel> all = repository.findAll();
@@ -73,7 +72,7 @@ class SolarPanelFileRepositoryTest {
         assertEquals(31, idTen.getRow());
         assertEquals(21,idTen.getColumn());
         assertEquals(2016,idTen.getYearInstalled());
-        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,idTen.getMaterial());
+        assertEquals(SolarPanelMaterial.AMSI,idTen.getMaterial());
         assertEquals(false,idTen.isTracking());
 
         SolarPanel idSixteen = all.get(15);
@@ -82,14 +81,14 @@ class SolarPanelFileRepositoryTest {
         assertEquals(22, idSixteen.getRow());
         assertEquals(33,idSixteen.getColumn());
         assertEquals(2022,idSixteen.getYearInstalled());
-        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,idSixteen.getMaterial());
+        assertEquals(SolarPanelMaterial.AMSI,idSixteen.getMaterial());
         assertEquals(true,idSixteen.isTracking());
     }
 
     @Test
     void shouldUpdate() throws DataAccessException {
         SolarPanel solarPanel = repository.findByKey("The Ridge",2,2);
-        solarPanel.setMaterial(SolarPanelMaterial.AMORPHOUS_SILICON);
+        solarPanel.setMaterial(SolarPanelMaterial.AMSI);
         solarPanel.setYearInstalled(2012);
         solarPanel.setTracking(false);
 
@@ -105,7 +104,7 @@ class SolarPanelFileRepositoryTest {
         assertEquals(2,solarPanel.getRow());
         assertEquals(2,solarPanel.getColumn());
         assertEquals(2012,solarPanel.getYearInstalled());
-        assertEquals(SolarPanelMaterial.AMORPHOUS_SILICON,solarPanel.getMaterial());
+        assertEquals(SolarPanelMaterial.AMSI,solarPanel.getMaterial());
         assertEquals(false,solarPanel.isTracking());
 
     }
@@ -118,7 +117,7 @@ class SolarPanelFileRepositoryTest {
                 99,
                 101,
                 2020,
-                SolarPanelMaterial.MONOCRYSTALLINE_SILICON,
+                SolarPanelMaterial.MONOSI,
                 true);
 
         boolean result = repository.update(solarPanel);

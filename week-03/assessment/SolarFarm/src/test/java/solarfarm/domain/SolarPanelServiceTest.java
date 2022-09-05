@@ -18,7 +18,7 @@ class SolarPanelServiceTest {
 
     @Test
     void shouldCreateSolarPanel() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0, "Treeline",1,4,2022, SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0, "Treeline",1,4,2022, SolarPanelMaterial.AMSI,true));
         assertNotNull(actual.getSolarPanel());
         assertTrue(actual.isSuccess());
 
@@ -35,14 +35,14 @@ class SolarPanelServiceTest {
     }
     @Test
     void shouldNotCreateDuplicate() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0,"The Ridge",1,1,2020,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0,"The Ridge",1,1,2020,SolarPanelMaterial.AMSI,true));
         assertFalse(actual.isSuccess());
         assertEquals("There is already a Solar Panel at that location.",actual.getMessages().get(0));
     }
 
     @Test
     void shouldNotCreateWithEmptySection() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0,"     ",1,4,2022,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0,"     ",1,4,2022,SolarPanelMaterial.AMSI,true));
 
         assertFalse(actual.isSuccess());
         assertNull(actual.getSolarPanel());
@@ -51,7 +51,7 @@ class SolarPanelServiceTest {
 
     @Test
     void shouldNotCreateWithInvalidRow() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",0,4,2022,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",0,4,2022,SolarPanelMaterial.AMSI,true));
 
         assertFalse(actual.isSuccess());
         assertNull(actual.getSolarPanel());
@@ -60,7 +60,7 @@ class SolarPanelServiceTest {
     }
     @Test
     void shouldNotCreateWithInvalidColumn() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",1,251,2022,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",1,251,2022,SolarPanelMaterial.AMSI,true));
 
         assertFalse(actual.isSuccess());
         assertNull(actual.getSolarPanel());
@@ -69,7 +69,7 @@ class SolarPanelServiceTest {
 
     @Test
     void shouldNotCreateWithInvalidYear() throws DataAccessException {
-        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",1,4,2023,SolarPanelMaterial.AMORPHOUS_SILICON,true));
+        SolarPanelResult actual = service.create(new SolarPanel(0,"Treeline",1,4,2023,SolarPanelMaterial.AMSI,true));
 
         assertFalse(actual.isSuccess());
         assertNull(actual.getSolarPanel());
@@ -119,7 +119,7 @@ class SolarPanelServiceTest {
 
     @Test
     void shouldNotUpdateToNonExistingSolarPanel() throws DataAccessException {
-        SolarPanel solarPanel = new SolarPanel(0, "FAKE", 5,5, 1990, SolarPanelMaterial.MONOCRYSTALLINE_SILICON,false);
+        SolarPanel solarPanel = new SolarPanel(0, "FAKE", 5,5, 1990, SolarPanelMaterial.MONOSI,false);
         SolarPanelResult actual = service.update(solarPanel);
 
         assertFalse(actual.isSuccess());
