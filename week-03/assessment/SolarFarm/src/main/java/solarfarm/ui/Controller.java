@@ -33,16 +33,15 @@ public class Controller {
             int selection = view.getMenuOption();
             switch (selection) {
                 case 1:
-                    panelsBySection();
                     break;
                 case 2:
                     addSolarPanel();
                     break;
                 case 3:
-                    updateSolarPanel();
+
                     break;
                 case 4:
-                    deleteSolarPanel();
+
                     break;
                 case 5:
                     exit = true;
@@ -51,18 +50,20 @@ public class Controller {
         }
     }
 
-    private void panelsBySection() {
-        List<SolarPanel> solarPanels = service.findBySection();
-    }
 
+    // CREATE
     private void addSolarPanel() throws DataAccessException {
         SolarPanel solarPanel = view.makeSolarPanel();
 
         SolarPanelResult result = service.create(solarPanel);
         if (result.isSuccess()) {
             view.displayText("Your panel was created successfully!");
+        } else {
+            view.displayErrors(result.getMessages());
         }
     }
+
+    // READ
 
 
 }

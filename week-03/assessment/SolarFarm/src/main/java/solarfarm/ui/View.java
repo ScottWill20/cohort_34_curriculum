@@ -17,7 +17,7 @@ public class View {
         displayText("3. Update a Solar Panel");
         displayText("4. Delete a Solar Panel");
         displayText("5. Exit the Program");
-        return readInt("Select [1-5]",1,5);
+        return readInt("Select [1-5]:",1,5);
     }
 
     // CREATE
@@ -32,13 +32,13 @@ public class View {
         return result;
     }
 
-    public void displayBySection(List<SolarPanel> solarPanels) {
-        displayHeader("Find Panels by Section");
-
-        for (SolarPanel solarPanel : solarPanels) {
-            displayText(String.format());
-        }
-    }
+//    public void displayBySection(List<SolarPanel> solarPanels) {
+//        displayHeader("Find Panels by Section");
+//
+//        for (SolarPanel solarPanel : solarPanels) {
+//            displayText(String.format());
+//        }
+//    }
 
     // Helper Methods
     public void displayHeader(String header) {
@@ -62,6 +62,17 @@ public class View {
     public int readInt(String prompt, int min, int max) {
         while (true) {
             String value = readString(prompt);
+            try {
+                int intValue = Integer.parseInt(value);
+                if (intValue < min || intValue > max) {
+                    System.out.printf("Sorry, that choice is out of bounds. Please choose a number between %S and %s.%n", min, max);
+                    value = readString(prompt);
+                } else {
+                    return intValue;
+                }
+            }catch (NumberFormatException ex) {
+                System.out.printf("%s is not a number.%n",value);
+            }
         }
     }
 
