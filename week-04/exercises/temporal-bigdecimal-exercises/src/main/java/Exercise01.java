@@ -1,4 +1,7 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exercise01 {
@@ -16,7 +19,7 @@ public class Exercise01 {
 
     // 2. return December 17, 1903, as a LocalDate
     LocalDate getFirstFlightDate() {
-        LocalDate before = LocalDate.of(1903,12,3);
+        LocalDate before = LocalDate.of(1903, 12, 3);
         return before;
     }
 
@@ -26,28 +29,42 @@ public class Exercise01 {
         if (date.isAfter(LocalDate.now())) {
             return null;
         } else {
-
-
+            date.plusDays(5);
+            return date;
         }
     }
 
     // 4. return the fifth Friday from the parameter date.
     // if the date is Friday, don't count it.
     LocalDate fiveFridaysFromDate(LocalDate date) {
-        return null;
+        if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
+            return null;
+        } else {
+            date.plusWeeks(5);
+            return date;
+        }
     }
 
     // 5. given a date and a count,
     // return a list of the next `fridayCount` Fridays after the date.
     // if the date is Friday, don't include it.
+
     List<LocalDate> getNextFridays(LocalDate date, int fridayCount) {
-        return null;
-    }
+        List <LocalDate> dates = new ArrayList<>();
+        if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
+            return null;
+        } else {
+            date.plusWeeks(fridayCount);
+            return dates;
+            }
+        }
+
 
     // 6. return the absolute value of the days between two dates.
     // one may be before two, two may be before one, but neither will be null
     int getDaysBetween(LocalDate one, LocalDate two) {
-        return 0;
+        Period difference = Period.between(one,two);
+        return Math.abs(difference.getDays());
     }
 
 }
