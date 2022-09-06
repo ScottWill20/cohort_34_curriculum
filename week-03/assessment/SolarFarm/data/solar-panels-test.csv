@@ -1,0 +1,16 @@
+id,section,row,column,yearInstalled,material,isTracking
+1,The Ridge,1,1,2005,POLYSI,yes
+2,The Ridge,1,2,2005,CIGS,no
+3,The Ridge,1,3,2005,AMSI,yes
+4,The Ridge,2,1,2006,MONOSI,yes
+5,The Ridge,2,2,2010,CDTE,yes
+6,Treeline,10,1,2011,MONOSI,no
+7,Treeline,10,2,2011,CIGS,no
+8,Treeline,11,1,2012,CDTE,no
+9,Treeline,21,11,2016,POLYSI,yes
+10,Treeline,31,21,2016,AMSI,no
+11,Flats,61,51,2017,CDTE,no
+12,Flats,71,61,2017,POLYSI,yes
+13,Flats,81,71,2018,AMSI,no
+14,Flats,91,81,2020,MONOSI,yes
+15,Flats,101,91,2022,CIGS,yes
