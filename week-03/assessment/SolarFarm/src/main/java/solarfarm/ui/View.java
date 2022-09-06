@@ -110,8 +110,7 @@ public class View {
 
 
     public String readSection() { // reads a section name
-        String prompt = null;
-        prompt = readRequiredString("Section: ");
+        String prompt = readRequiredString("Section: ");
         return prompt;
     }
 
