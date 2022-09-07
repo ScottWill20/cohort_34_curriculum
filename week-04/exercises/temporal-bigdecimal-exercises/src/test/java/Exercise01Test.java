@@ -43,17 +43,17 @@ class Exercise01Test {
         assertEquals(date.plusDays(5), instance.makeFutureNullShiftThePast(date));
     }
 
-    @Test
-    void fiveFridaysFromToday() {
-        LocalDate date = LocalDate.now();
-        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
-
-        date = LocalDate.now().minusDays(200);
-        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
-
-        date = LocalDate.now().plusWeeks(73);
-        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
-    }
+//    @Test
+//    void fiveFridaysFromToday() {
+//        LocalDate date = LocalDate.now();
+//        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
+//
+//        date = LocalDate.now().minusDays(200);
+//        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
+//
+//        date = LocalDate.now().plusWeeks(73);
+//        assertEquals(fiveFridaysRefImpl(date), instance.fiveFridaysFromDate(date));
+//    }
 
     @Test
     void getNextFridays() {
