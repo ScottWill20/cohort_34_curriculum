@@ -105,7 +105,7 @@ public class SolarPanelService {
             result.addMessage("That is not a valid year.");
             return result;
         }
-        if (solarPanel.getMaterial() == null || solarPanel.getSection().isBlank()) {
+        if (solarPanel.getMaterial() == null) {
             result.addMessage("Material type is required.");
             return result;
         }

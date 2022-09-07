@@ -119,7 +119,6 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         buffer.append(solarPanel.getMaterial()).append(DELIMITER);
         buffer.append(solarPanel.isTracking());
         return buffer.toString();
-
     }
 
     private SolarPanel deserialize(String line) {
