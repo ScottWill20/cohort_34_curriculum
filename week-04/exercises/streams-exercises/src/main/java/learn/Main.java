@@ -93,13 +93,18 @@ public class Main {
         // 14. Print a distinct list of courses students are registered for, ordered by name.
 
         // 15. Count students per country.
-//        Map<String, Long> studentsByCountry = students.stream()
-//                .collect(Collectors.groupingBy(Student::getCountry,Collectors.counting()));
-//        for (String country : studentsByCountry.keySet()) {
-//            System.out.println(country + ": " + studentsByCountry.get(country));
-//        }
+        Map<String, Long> studentsByCountry = students.stream()
+                .collect(Collectors.groupingBy(Student::getCountry,Collectors.counting()));
+        for (String country : studentsByCountry.keySet()) {
+            System.out.println(country + ": " + studentsByCountry.get(country));
+        }
 
         // 16. Count students per country. Order by most to fewest students.
+        Map<String, Long> studentsByCountryOrder = students.stream()
+                .collect(Collectors.groupingBy(Student::getCountry,Collectors.counting()));
+        for (String country : studentsByCountryOrder.keySet()) {
+            System.out.println(country + ": " + studentsByCountryOrder.get(country));
+        }
 
         // 17. Count registrations per course.
 
