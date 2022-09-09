@@ -6,11 +6,11 @@
 ### Review
 
 * [ ] Verify existing features
-  * [ ] Add an item
-  * [ ] View items
+  * [X] Add an item
+  * [X] View items
   * [ ] View foragers _(this feature is missing)_
-  * [ ] Add a forage
-  * [ ] View forages by date
+  * [X] Add a forage
+  * [X] View forages by date
 * [ ] Step through existing code to confirm understanding
 * [ ] Manually test existing features
   * [ ] Add an Item
