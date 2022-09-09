@@ -8,5 +8,50 @@
      Define "beans" here.
      A bean definition registers an instance of a data type with the DI container.
      -->
+<!--    &lt;!&ndash; 1. class is a fully-qualified type name. &ndash;&gt;-->
+<!--    <bean id ="captain" class="learn.spaceflight.personnel.Astronaut">-->
+<!--        &lt;!&ndash; 2. constructor-args represent values provided to the constructor. &ndash;&gt;-->
+<!--        <constructor-arg value="Saraann"/>-->
+<!--        <constructor-arg value="Burd"/>-->
+<!--        <constructor-arg value="14"/>-->
+<!--    </bean>-->
+
+<!--    <bean id ="second" class="learn.spaceflight.personnel.Astronaut">-->
+<!--        <constructor-arg value="Mohandis"/>-->
+<!--        <constructor-arg value="Ayer"/>-->
+<!--        <constructor-arg value="11"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="engineer" class="learn.spaceflight.personnel.Astronaut">-->
+<!--        <constructor-arg value="Lark"/>-->
+<!--        <constructor-arg value="Middlemist"/>-->
+<!--        <constructor-arg value="11"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="doctor" class="learn.spaceflight.personnel.Astronaut">-->
+<!--        <constructor-arg value="Itch"/>-->
+<!--        <constructor-arg value="Yearnsley"/>-->
+<!--        <constructor-arg value="5"/>-->
+<!--    </bean>-->
+
+<!--    <bean class="learn.spaceflight.spacecraft.InterstellarTransport">-->
+<!--        <constructor-arg>-->
+<!--            &lt;!&ndash; A list of references. &ndash;&gt;-->
+<!--            <list>-->
+<!--                <ref bean="second"/>-->
+<!--                <ref bean="engineer"/>-->
+<!--                <ref bean="doctor"/>-->
+<!--            </list>-->
+<!--        </constructor-arg>-->
+<!--        &lt;!&ndash; Setter injection. &ndash;&gt;-->
+<!--        <property name="captain" ref="captain"/>-->
+<!--    </bean>-->
+
+<!--    <bean class="learn.spaceflight.spacecraft.MoonHopper">-->
+<!--        <constructor-arg ref="crew"/>-->
+<!--        <constructor-arg ref="captain"/>-->
+<!--    </bean>-->
+
+    <bean class="learn.spaceflight.spacecraft.Probe" scope="prototype"/>
 
 </beans>

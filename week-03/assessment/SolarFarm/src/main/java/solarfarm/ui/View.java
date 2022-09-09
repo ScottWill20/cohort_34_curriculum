@@ -1,11 +1,13 @@
 package solarfarm.ui;
 
+import org.springframework.stereotype.Component;
 import solarfarm.models.SolarPanel;
 import solarfarm.models.SolarPanelMaterial;
 
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class View {
 
     Scanner console = new Scanner(System.in);

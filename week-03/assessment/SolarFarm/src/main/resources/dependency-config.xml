@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id = "repository" class = "solarfarm.data.SolarPanelFileRepository">
+        <constructor-arg value = "./data/solar-panels.csv"/>
+    </bean>
+
+    <bean id = "view" class = "solarfarm.ui.View"/>
+
+    <bean id = "service" class = "solarfarm.domain.SolarPanelService">
+        <constructor-arg ref = "repository"/>
+    </bean>
+
+    <bean class = "solarfarm.ui.Controller">
+        <constructor-arg ref = "view"/>
+        <constructor-arg ref = "service"/>
+    </bean>
+
+</beans>

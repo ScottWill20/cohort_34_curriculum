@@ -1,5 +1,7 @@
 package solarfarm.data;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 import solarfarm.models.SolarPanel;
 import solarfarm.models.SolarPanelMaterial;
 
@@ -7,12 +9,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class SolarPanelFileRepository implements SolarPanelRepository {
     private static final String DELIMITER = ",";
     private final String DELIMITER_REPLACEMENT = "@@@";
-    private String filePath;
+    private final String filePath;
 
-    public SolarPanelFileRepository(String filePath) {
+    public SolarPanelFileRepository(@Value("${solarPanelFilePath:./data/solar-panels.csv")String filePath) {
         this.filePath = filePath;
     }
 
@@ -119,7 +122,6 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         buffer.append(solarPanel.getMaterial()).append(DELIMITER);
         buffer.append(solarPanel.isTracking());
         return buffer.toString();
-
     }
 
     private SolarPanel deserialize(String line) {

@@ -1,5 +1,6 @@
 package solarfarm.domain;
 
+import org.springframework.stereotype.Service;
 import solarfarm.data.DataAccessException;
 import solarfarm.data.SolarPanelRepository;
 import solarfarm.models.SolarPanel;
@@ -7,10 +8,12 @@ import solarfarm.models.SolarPanel;
 import java.util.List;
 import java.util.Objects;
 
+@Service
 public class SolarPanelService {
     private final SolarPanelRepository repository;
 
     public SolarPanelService(SolarPanelRepository repository) {
+
         this.repository = repository;
     }
 
@@ -105,7 +108,7 @@ public class SolarPanelService {
             result.addMessage("That is not a valid year.");
             return result;
         }
-        if (solarPanel.getMaterial() == null || solarPanel.getSection().isBlank()) {
+        if (solarPanel.getMaterial() == null) {
             result.addMessage("Material type is required.");
             return result;
         }

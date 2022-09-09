@@ -1,5 +1,6 @@
 package solarfarm.ui;
 
+import org.springframework.stereotype.Component;
 import solarfarm.data.DataAccessException;
 import solarfarm.domain.SolarPanelResult;
 import solarfarm.domain.SolarPanelService;
@@ -7,6 +8,7 @@ import solarfarm.models.SolarPanel;
 
 import java.util.List;
 
+@Component
 public class Controller {
     private final View view;
     private final SolarPanelService service;
@@ -88,7 +90,7 @@ public class Controller {
         if (result.isSuccess()) {
             System.out.println("");
             view.displayText("Success!");
-            System.out.printf("Panel %s-%s-%s has been updated.",section,row,column);
+            System.out.printf("Panel %s-%s-%s has been updated.",solarPanel.getSection(),solarPanel.getRow(),solarPanel.getColumn());
             System.out.println("");
         } else {
             view.displayErrors(result.getMessages());

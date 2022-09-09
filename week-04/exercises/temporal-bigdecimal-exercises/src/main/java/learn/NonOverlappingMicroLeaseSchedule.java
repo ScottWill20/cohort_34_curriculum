@@ -1,5 +1,6 @@
 package learn;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 /**
@@ -26,6 +27,22 @@ public class NonOverlappingMicroLeaseSchedule {
      * false if not valid
      */
     public boolean add(MicroLease lease) {
-        return false;
+        if (lease == null) {
+            return false;
+        }
+        if ((lease.getStart() == null) || (lease.getEnd() == null)) {
+            return false;
+        }
+
+        if (lease.getStart().isAfter(lease.getEnd())) {
+            return false;
+        }
+//        Duration difference = Duration.between(lease.getStart(), lease.getEnd());
+//        if (leases.contains(difference.getSeconds())) {
+//            return false;
+//        }
+
+        leases.add(lease);
+        return true;
     }
 }
