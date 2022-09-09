@@ -1,6 +1,8 @@
 package learn.foraging.data;
 
 import learn.foraging.models.Forager;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class ForagerFileRepository implements ForagerRepository {
 
+    // TODO String HEADER
     private final String filePath;
 
-    public ForagerFileRepository(String filePath) {
+    public ForagerFileRepository(@Value("${foragerFilePath:./data/foragers.csv}")String filePath) {
         this.filePath = filePath;
     }
 
@@ -46,12 +50,16 @@ public class ForagerFileRepository implements ForagerRepository {
                 .orElse(null);
     }
 
+    // TODO add() method
+
     @Override
     public List<Forager> findByState(String stateAbbr) {
         return findAll().stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
     }
+
+    // TODO serialize() method
     
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
@@ -61,4 +69,9 @@ public class ForagerFileRepository implements ForagerRepository {
         result.setState(fields[3]);
         return result;
     }
+
+    // TODO writeAll() method
+
+
+
 }

@@ -9,10 +9,13 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Component
 public class Controller {
 
     private final ForagerService foragerService;
@@ -20,6 +23,7 @@ public class Controller {
     private final ItemService itemService;
     private final View view;
 
+    @Autowired
     public Controller(ForagerService foragerService, ForageService forageService, ItemService itemService, View view) {
         this.foragerService = foragerService;
         this.forageService = forageService;
@@ -48,6 +52,8 @@ public class Controller {
                 case VIEW_ITEMS:
                     viewItems();
                     break;
+                // TODO case VIEW_FORAGERS_BY_STATE:
+                    // viewForagersByState();
                 case ADD_FORAGE:
                     addForage();
                     break;
@@ -90,6 +96,8 @@ public class Controller {
         view.enterToContinue();
     }
 
+    // TODO viewForagersByState
+
     private void addForage() throws DataException {
         view.displayHeader(MainMenuOption.ADD_FORAGE.getMessage());
         Forager forager = getForager();
@@ -109,6 +117,8 @@ public class Controller {
             view.displayStatus(true, successMessage);
         }
     }
+
+    // TODO addForager()
 
     private void addItem() throws DataException {
         Item item = view.makeItem();

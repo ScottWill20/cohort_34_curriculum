@@ -11,13 +11,13 @@
   * [ ] View foragers _(this feature is missing)_
   * [X] Add a forage
   * [X] View forages by date
-* [ ] Step through existing code to confirm understanding
-* [ ] Manually test existing features
-  * [ ] Add an Item
-  * [ ] View Items
-  * [ ] View Foragers
-  * [ ] Add a Forage
-  * [ ] View Forages by date
+* [X] Step through existing code to confirm understanding
+* [X] Manually test existing features
+  * [X] Add an Item
+  * [X] View Items
+  * [X] View Foragers
+  * [X] Add a Forage
+  * [X] View Forages by date
 * [ ] Review existing data layer code
   * [ ] Confirm that every class method is used
   * [ ] Confirm that data persistence works as expected
