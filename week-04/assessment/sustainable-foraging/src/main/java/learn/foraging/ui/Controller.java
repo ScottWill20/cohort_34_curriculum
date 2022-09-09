@@ -49,11 +49,12 @@ public class Controller {
                 case VIEW_FORAGES_BY_DATE:
                     viewByDate();
                     break;
+                case VIEW_FORAGERS_BY_STATE:
+                    viewForagersByState();
+                    break;
                 case VIEW_ITEMS:
                     viewItems();
                     break;
-                // TODO case VIEW_FORAGERS_BY_STATE:
-                    // viewForagersByState();
                 case ADD_FORAGE:
                     addForage();
                     break;
@@ -86,6 +87,13 @@ public class Controller {
         view.displayForages(forages);
         view.enterToContinue();
     }
+    private void viewForagersByState() {
+        String state = view.getForagerStateAbbreviation();
+        List<Forager> foragers = foragerService.findByState(state);
+        view.displayHeader("Foragers in " + state);
+        view.displayForagers(foragers);
+        view.enterToContinue();
+    }
 
     private void viewItems() {
         view.displayHeader(MainMenuOption.VIEW_ITEMS.getMessage());
@@ -95,8 +103,6 @@ public class Controller {
         view.displayItems(items);
         view.enterToContinue();
     }
-
-    // TODO viewForagersByState
 
     private void addForage() throws DataException {
         view.displayHeader(MainMenuOption.ADD_FORAGE.getMessage());

@@ -1,19 +1,13 @@
 package learn.foraging.domain;
 
-import learn.foraging.data.DataException;
-import learn.foraging.data.ForageRepository;
-import learn.foraging.data.ForagerRepository;
-import learn.foraging.data.ItemRepository;
+import learn.foraging.data.*;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -98,6 +92,11 @@ public class ForageService {
             return result;
         }
 
+        validateUniqueForage(forage, result);
+        if (!result.isSuccess()) {
+            return result;
+        }
+
         validateChildrenExist(forage, result);
 
         return result;
@@ -125,6 +124,14 @@ public class ForageService {
         return result;
     }
 
+    // TODO validateUniqueForage
+    private void validateUniqueForage(Forage forage, Result<Forage> result) {
+        List<Item> items = itemRepository.findAll();
+        List<Forager> foragers = foragerRepository.findAll();
+
+
+    }
+
     private void validateFields(Forage forage, Result<Forage> result) {
         // No future dates.
         if (forage.getDate().isAfter(LocalDate.now())) {
@@ -134,6 +141,7 @@ public class ForageService {
         if (forage.getKilograms() <= 0 || forage.getKilograms() > 250.0) {
             result.addErrorMessage("Kilograms must be a positive number less than 250.0");
         }
+
     }
 
     private void validateChildrenExist(Forage forage, Result<Forage> result) {

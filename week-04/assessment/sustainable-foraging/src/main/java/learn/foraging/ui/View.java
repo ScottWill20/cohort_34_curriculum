@@ -45,6 +45,11 @@ public class View {
         return io.readRequiredString("Forager last name starts with: ");
     }
 
+    public String getForagerStateAbbreviation () {
+        displayHeader(MainMenuOption.VIEW_FORAGERS_BY_STATE.getMessage());
+        return io.readRequiredString("Provide a State (abbreviated): ");
+    }
+
     public Forager chooseForager(List<Forager> foragers) {
         if (foragers.size() == 0) {
             io.println("No foragers found");
@@ -185,14 +190,29 @@ public class View {
         }
     }
 
-    public void displayItems(List<Item> items) {
+    public void displayForagers(List<Forager> foragers) {
+        if (foragers == null || foragers.isEmpty()) {
+            io.println("No foragers found.");
+            return;
+        }
+        for (Forager forager : foragers) {
+            io.printf("%s %s%n",
+                    forager.getFirstName(),
+                    forager.getLastName());
+        }
+    }
 
+
+    public void displayItems(List<Item> items) {
         if (items.size() == 0) {
             io.println("No items found");
         }
-
         for (Item item : items) {
-            io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
+            io.printf("%s: %s, %s, %.2f $/kg%n",
+                    item.getId(),
+                    item.getName(),
+                    item.getCategory(),
+                    item.getDollarPerKilogram());
         }
     }
 }

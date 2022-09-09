@@ -32,7 +32,7 @@
 
 ### New Development
 
-* [ ] Add Spring DI to the project
+* [X] Add Spring DI to the project
 * [ ] Add a Forager
   * [ ] Add unit tests
 * [ ] Create a report that displays the kilograms of each Item collected on one day

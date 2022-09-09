@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ForagerFileRepository implements ForagerRepository {
-
-    // TODO String HEADER
     private final String filePath;
 
     public ForagerFileRepository(@Value("${foragerFilePath:./data/foragers.csv}")String filePath) {
@@ -50,8 +48,6 @@ public class ForagerFileRepository implements ForagerRepository {
                 .orElse(null);
     }
 
-    // TODO add() method
-
     @Override
     public List<Forager> findByState(String stateAbbr) {
         return findAll().stream()
@@ -59,8 +55,6 @@ public class ForagerFileRepository implements ForagerRepository {
                 .collect(Collectors.toList());
     }
 
-    // TODO serialize() method
-    
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
         result.setId(fields[0]);
@@ -69,9 +63,5 @@ public class ForagerFileRepository implements ForagerRepository {
         result.setState(fields[3]);
         return result;
     }
-
-    // TODO writeAll() method
-
-
 
 }
