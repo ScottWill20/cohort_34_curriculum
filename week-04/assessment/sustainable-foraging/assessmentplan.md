@@ -35,12 +35,12 @@
 * [X] Add Spring DI to the project
 * [X] Add a Forager
   * [X] Add unit tests
-* [ ] Create a report that displays the kilograms of each Item collected on one day
+* [X] Create a report that displays the kilograms of each Item collected on one day
   * [ ] Add unit tests
-  * [ ] Use streams or loops (and intermediate variables)
-* [ ] Create a report that displays the total value of each Category collected on one day
+  * [X] Use streams or loops (and intermediate variables)
+* [X] Create a report that displays the total value of each Category collected on one day
   * [ ] Add unit tests
-  * [ ] Use streams or loops (and intermediate variables)
+  * [X] Use streams or loops (and intermediate variables)
 
 ### Existing Issues/Bugs
 

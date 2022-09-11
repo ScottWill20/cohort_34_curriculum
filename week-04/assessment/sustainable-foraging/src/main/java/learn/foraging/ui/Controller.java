@@ -12,8 +12,14 @@ import learn.foraging.models.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class Controller {
@@ -65,12 +71,10 @@ public class Controller {
                     addItem();
                     break;
                 case REPORT_KG_PER_ITEM:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    itemDayInKg();
                     break;
                 case REPORT_CATEGORY_VALUE:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    categoryValueByDay();
                     break;
                 case GENERATE:
                     generate();
@@ -152,6 +156,45 @@ public class Controller {
             String successMessage = String.format("Item %s created.", result.getPayload().getId());
             view.displayStatus(true, successMessage);
         }
+    }
+
+    // TODO itemDayInKg()
+    private void itemDayInKg() {
+        view.displayHeader(MainMenuOption.REPORT_KG_PER_ITEM.getMessage());
+        LocalDate date = view.getForageDate();
+        List<Forage> forages = forageService.findByDate(date);
+
+        Map<Item, DoubleSummaryStatistics> foragesByDate = forages.stream()
+                .collect(Collectors.groupingBy(Forage::getItem,
+                        Collectors.summarizingDouble(Forage::getKilograms)));
+
+        for (Item item : foragesByDate.keySet()) {
+            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
+            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
+            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
+        }
+        view.enterToContinue();
+
+    }
+
+    // TODO categoryValueByDay()
+    private void categoryValueByDay() {
+        view.displayHeader(MainMenuOption.REPORT_CATEGORY_VALUE.getMessage());
+        LocalDate date = view.getForageDate();
+        List<Forage> forages = forageService.findByDate(date);
+
+        Map<Category, DoubleSummaryStatistics> sumValueCategory = forages.stream()
+                .collect(Collectors.groupingBy(i -> i.getItem().getCategory(),
+                        Collectors.summarizingDouble(i -> i.getValue().doubleValue())));
+
+        for (Category category : sumValueCategory.keySet()) {
+            DoubleSummaryStatistics sumValue = sumValueCategory.get(category);
+            BigDecimal roundSumValue = BigDecimal.valueOf(sumValue.getSum()).setScale(2,RoundingMode.HALF_UP);
+            System.out.println(category + ": $" + roundSumValue);
+        }
+
+
+
     }
 
     private void generate() throws DataException {
