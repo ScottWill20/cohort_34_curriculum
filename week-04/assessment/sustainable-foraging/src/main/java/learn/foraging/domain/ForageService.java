@@ -92,7 +92,7 @@ public class ForageService {
             return result;
         }
 
-        validateUniqueForage(forage, result);
+        validateUnique(forage, result);
         if (!result.isSuccess()) {
             return result;
         }
@@ -124,11 +124,23 @@ public class ForageService {
         return result;
     }
 
-    // TODO validateUniqueForage
-    private void validateUniqueForage(Forage forage, Result<Forage> result) {
-        List<Item> items = itemRepository.findAll();
-        List<Forager> foragers = foragerRepository.findAll();
+    // TODO validateUnique
+    private void validateUnique(Forage forage, Result<Forage> result) {
 
+        LocalDate date = forage.getDate();
+        List<Forage> dupeForage = forageRepository.findByDate(date).stream()
+                .filter(f -> f.getDate().equals(forage.getDate())
+                        && f.getItem().getId() == forage.getItem().getId()
+                        && f.getForager().getId().equals(forage.getForager().getId())
+                        && !f.getId().equalsIgnoreCase(forage.getId())).toList();
+
+        if (dupeForage.size() > 0) {
+            result.addErrorMessage(String.format("Forage on %s of %s by %s %s is a duplicate.",
+                    forage.getDate(),
+                    forage.getItem().getName(),
+                    forage.getForager().getFirstName(),
+                    forage.getForager().getLastName()));
+        }
 
     }
 

@@ -33,8 +33,8 @@
 ### New Development
 
 * [X] Add Spring DI to the project
-* [ ] Add a Forager
-  * [ ] Add unit tests
+* [X] Add a Forager
+  * [X] Add unit tests
 * [ ] Create a report that displays the kilograms of each Item collected on one day
   * [ ] Add unit tests
   * [ ] Use streams or loops (and intermediate variables)
@@ -46,10 +46,10 @@
 
 #### High Priority (must fix)
 
-1. [ ] Add the "View Foragers" feature
+1. [X] Add the "View Foragers" feature
   * This feature was supposed to be implemented but wasn't even represented in the menu (as an unimplemented item)
-1. [ ] Update the `ForageService.validate()` method to validate that the combination of date, item, forager is unique
-  * [ ] Add unit test
+1. [X] Update the `ForageService.validate()` method to validate that the combination of date, item, forager is unique
+  * [X] Add unit test
 
 #### Medium Priority (fix if you have time)
 
