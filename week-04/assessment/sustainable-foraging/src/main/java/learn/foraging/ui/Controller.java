@@ -159,6 +159,14 @@ public class Controller {
     }
 
     // TODO itemDayInKg()
+    // Nearly had this figured out - values of each item were all correct sums, but key was null -
+        // I wanted to make sure I had a working method for code review
+    // To ensure I could write tests I tried to drop the HashMap creation to ForageService method,
+        // that code is commented out in ForageService
+    // fixing the structure of these reports would hopefully allow me to sort alphabetically/by total value
+        // AFTER the summation
+    // Print methods were not the cause of null key value, but those key values are not visible in debugging until
+        // the print method is called
     private void itemDayInKg() {
         view.displayHeader(MainMenuOption.REPORT_KG_PER_ITEM.getMessage());
         LocalDate date = view.getForageDate();
@@ -167,7 +175,7 @@ public class Controller {
         Map<Item, DoubleSummaryStatistics> foragesByDate = forages.stream()
                 .collect(Collectors.groupingBy(Forage::getItem,
                         Collectors.summarizingDouble(Forage::getKilograms)));
-
+    // Change I would make: No need to print Inedible and Poisonous items, sum of each plants total forage is always zero
         for (Item item : foragesByDate.keySet()) {
             DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
             BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
@@ -187,6 +195,7 @@ public class Controller {
                 .collect(Collectors.groupingBy(i -> i.getItem().getCategory(),
                         Collectors.summarizingDouble(i -> i.getValue().doubleValue())));
 
+        // Change I would make: No need to print Inedible and Poisonous categories, sum of each category is always zero
         for (Category category : sumValueCategory.keySet()) {
             DoubleSummaryStatistics sumValue = sumValueCategory.get(category);
             BigDecimal roundSumValue = BigDecimal.valueOf(sumValue.getSum()).setScale(2,RoundingMode.HALF_UP);

@@ -77,6 +77,7 @@ public class ForagerService {
         return result;
     }
 
+    // TODO validateUnique()
     private void validateUnique(Forager forager, Result<Forager> result) {
 
         List<Forager> dupeForagers = repository.findAll().stream()

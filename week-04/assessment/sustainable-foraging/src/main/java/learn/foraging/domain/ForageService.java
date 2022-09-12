@@ -6,6 +6,8 @@ import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,6 +52,27 @@ public class ForageService {
         return result;
     }
 
+    // TODO reportKgPerDay()
+
+//    public Map<Item, DoubleSummaryStatistics> reportKgPerDay(LocalDate date) {
+//        findByDate(date);
+//        List<Forage> forages = forageRepository.findByDate(date);
+//        forages.stream().collect(Collectors.groupingBy(Forage::getItem,
+//                        Collectors.summarizingDouble(Forage::getKilograms)));
+//
+//        for (Item item : forages.keySet()) {
+//            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
+//            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
+//            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
+//        }
+//
+//        return forages;
+//    }
+
+    // TODO publicReportItemCategoryValue()
+
+
+
     public int generate(LocalDate start, LocalDate end, int count) throws DataException {
 
         if (start == null || end == null || start.isAfter(end) || count <= 0) {
@@ -92,6 +115,7 @@ public class ForageService {
             return result;
         }
 
+        // TODO implement validateUnique in validate
         validateUnique(forage, result);
         if (!result.isSuccess()) {
             return result;

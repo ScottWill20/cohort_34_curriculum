@@ -84,5 +84,10 @@ class ForageServiceTest {
         assertEquals("Forage on 2020-06-26 of Chanterelle by Jilly Sisse is a duplicate.", actual.getErrorMessages().get(0));
     }
 
+//    @Test
+//    void shouldPrintKilogramsOfItemInDay() {
+//
+//    }
+
 
 }

@@ -18,14 +18,14 @@
   * [X] View Foragers
   * [X] Add a Forage
   * [X] View Forages by date
-* [ ] Review existing data layer code
-  * [ ] Confirm that every class method is used
-  * [ ] Confirm that data persistence works as expected
-* [ ] Review existing domain layer code
-  * [ ] Confirm that every class method is used
-  * [ ] Confirm that data validation is implemented fully and correctly
+* [X] Review existing data layer code
+  * [X] Confirm that every class method is used
+  * [X] Confirm that data persistence works as expected
+* [X] Review existing domain layer code
+  * [X] Confirm that every class method is used
+  * [X] Confirm that data validation is implemented fully and correctly
 * [ ] Review requirements and general project information to validate understanding
-* [ ] Review existing unit tests to ensure that they work as expected
+* [ X Review existing unit tests to ensure that they work as expected
 * [ ] Document findings
   * [ ] Move all TODOs into this README that are actually bugs or things to fix
   * [ ] Commit TODOs before making any code changes
@@ -55,12 +55,12 @@
 
 1. [ ] Update the `ForageService.validateFields()` method to check if the kilograms is a positive number (currently is testing the lower bound as less than `0`)
   * [ ] Add unit test
-1. [ ] Update the validations in the `ItemService.add()` method to validate that the item category has been provided
-  * [ ] Add unit test
-1. [ ] Update the validations in the `ItemService.add()` method to correctly validate the $/Kg field value
-  * [ ] If the category is edible, medicinal, validate that the $/kr is between $0.01 and $7500.00
-  * [ ] If the category is inedible, poisonous, validate that the $/kg is $0
-  * [ ] Add unit tests
+1. [X] Update the validations in the `ItemService.add()` method to validate that the item category has been provided
+  * [X] Add unit test
+1. [X] Update the validations in the `ItemService.add()` method to correctly validate the $/Kg field value
+  * [X] If the category is edible, medicinal, validate that the $/kr is between $0.01 and $7500.00
+  * [X] If the category is inedible, poisonous, validate that the $/kg is $0
+  * [X] Add unit tests
 
 #### Low Priority (fix as stretch goals)
 
