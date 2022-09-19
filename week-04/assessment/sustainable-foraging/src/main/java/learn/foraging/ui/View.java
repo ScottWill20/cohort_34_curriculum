@@ -215,6 +215,13 @@ public class View {
         }
     }
 
+    public void displayItemDayInKg(Map<Category, DoubleSummaryStatistics> foragesByDate) {
+        for (Item item : foragesByDate.keySet()) {
+            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
+            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
+            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
+        }
+    }
 
     // It looks like I forgot to push my printReport methods that I had commented out here -
         // all they consisted of was the for() loop directly under the Map<> stream in the report methods in Controller.

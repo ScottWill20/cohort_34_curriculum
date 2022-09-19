@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -171,16 +170,19 @@ public class Controller {
         view.displayHeader(MainMenuOption.REPORT_KG_PER_ITEM.getMessage());
         LocalDate date = view.getForageDate();
         List<Forage> forages = forageService.findByDate(date);
+        Map<Category, DoubleSummaryStatistics> foragesByDate = forageService.reportKgPerDay(date);
 
-        Map<Item, DoubleSummaryStatistics> foragesByDate = forages.stream()
-                .collect(Collectors.groupingBy(Forage::getItem,
-                        Collectors.summarizingDouble(Forage::getKilograms)));
-    // Change I would make: No need to print Inedible and Poisonous items, sum of each plants total forage is always zero
-        for (Item item : foragesByDate.keySet()) {
-            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
-            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
-            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
-        }
+        view.displayItemDayInKg(foragesByDate);
+
+//        Map<Item, DoubleSummaryStatistics> foragesByDate = forages.stream()
+//                .collect(Collectors.groupingBy(Forage::getItem,
+//                        Collectors.summarizingDouble(Forage::getKilograms)));
+//    // Change I would make: No need to print Inedible and Poisonous items, sum of each plants total forage is always zero
+//        for (Item item : foragesByDate.keySet()) {
+//            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
+//            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
+//            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
+//        }
         view.enterToContinue();
 
     }
