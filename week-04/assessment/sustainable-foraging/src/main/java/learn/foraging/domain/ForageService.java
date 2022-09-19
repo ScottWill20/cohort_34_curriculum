@@ -1,13 +1,12 @@
 package learn.foraging.domain;
 
 import learn.foraging.data.*;
+import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -52,22 +51,16 @@ public class ForageService {
         return result;
     }
 
-    // TODO reportKgPerDay()
+//     TODO reportKgPerDay()
 
-//    public Map<Item, DoubleSummaryStatistics> reportKgPerDay(LocalDate date) {
-//        findByDate(date);
-//        List<Forage> forages = forageRepository.findByDate(date);
-//        forages.stream().collect(Collectors.groupingBy(Forage::getItem,
-//                        Collectors.summarizingDouble(Forage::getKilograms)));
-//
-//        for (Item item : forages.keySet()) {
-//            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
-//            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
-//            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
-//        }
-//
-//        return forages;
-//    }
+    public Map<Category, DoubleSummaryStatistics> reportKgPerDay(LocalDate date) {
+        findByDate(date);
+        List<Forage> forages = forageRepository.findByDate(date);
+
+        return forages.stream()
+                .collect(Collectors.groupingBy(i -> i.getItem().getCategory(),
+                        Collectors.summarizingDouble(i -> i.getValue().doubleValue())));
+    }
 
     // TODO publicReportItemCategoryValue()
 

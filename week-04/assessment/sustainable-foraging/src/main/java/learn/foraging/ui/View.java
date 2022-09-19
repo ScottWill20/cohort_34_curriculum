@@ -215,6 +215,7 @@ public class View {
         }
     }
 
+
     // It looks like I forgot to push my printReport methods that I had commented out here -
         // all they consisted of was the for() loop directly under the Map<> stream in the report methods in Controller.
         // All keys were null using this printMethod, but the values were correct
