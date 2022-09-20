@@ -53,13 +53,14 @@ public class ForageService {
 
 //     TODO reportKgPerDay()
 
-    public Map<Category, DoubleSummaryStatistics> reportKgPerDay(LocalDate date) {
+    public List<Forage> reportKgPerDay(LocalDate date) {
         findByDate(date);
         List<Forage> forages = forageRepository.findByDate(date);
+        forages.stream().collect(Collectors.groupingBy(Forage::getItem,
+                        Collectors.summarizingDouble(Forage::getKilograms)));
 
-        return forages.stream()
-                .collect(Collectors.groupingBy(i -> i.getItem().getCategory(),
-                        Collectors.summarizingDouble(i -> i.getValue().doubleValue())));
+        return forages;
+
     }
 
     // TODO publicReportItemCategoryValue()
