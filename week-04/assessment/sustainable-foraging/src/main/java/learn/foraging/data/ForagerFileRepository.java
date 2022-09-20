@@ -1,20 +1,21 @@
 package learn.foraging.data;
 
 import learn.foraging.models.Forager;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOError;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class ForagerFileRepository implements ForagerRepository {
 
+    private static final String HEADER = "id,first_name,last_name,state";
     private final String filePath;
 
-    public ForagerFileRepository(String filePath) {
+    public ForagerFileRepository(@Value("${foragerFilePath:./data/foragers.csv}")String filePath) {
         this.filePath = filePath;
     }
 
@@ -52,7 +53,28 @@ public class ForagerFileRepository implements ForagerRepository {
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
     }
-    
+
+    // TODO add() method
+    public Forager add(Forager forager) throws DataException {
+        if (forager == null) {
+            return null;
+        }
+        List<Forager> all = findAll();
+        forager.setId(java.util.UUID.randomUUID().toString());
+        all.add(forager);
+        writeAll(all);
+        return forager;
+    }
+
+    // TODO serialize() method
+    private String serialize(Forager forager) {
+        return String.format("%s,%s,%s,%s",
+                forager.getId(),
+                forager.getFirstName(),
+                forager.getLastName(),
+                forager.getState());
+    }
+
     private Forager deserialize(String[] fields) {
         Forager result = new Forager();
         result.setId(fields[0]);
@@ -61,4 +83,24 @@ public class ForagerFileRepository implements ForagerRepository {
         result.setState(fields[3]);
         return result;
     }
+
+    // TODO writeAll() method
+    private void writeAll(List<Forager> foragers) throws DataException {
+        try (PrintWriter writer = new PrintWriter(filePath)) {
+
+            writer.println(HEADER);
+
+            if (foragers == null) {
+                return;
+            }
+
+            for (Forager forager : foragers) {
+                writer.println(serialize(forager));
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new DataException(e);
+        }
+    }
+
 }

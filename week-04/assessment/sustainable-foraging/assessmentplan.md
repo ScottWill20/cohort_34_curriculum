@@ -6,61 +6,61 @@
 ### Review
 
 * [ ] Verify existing features
-  * [ ] Add an item
-  * [ ] View items
+  * [X] Add an item
+  * [X] View items
   * [ ] View foragers _(this feature is missing)_
-  * [ ] Add a forage
-  * [ ] View forages by date
-* [ ] Step through existing code to confirm understanding
-* [ ] Manually test existing features
-  * [ ] Add an Item
-  * [ ] View Items
-  * [ ] View Foragers
-  * [ ] Add a Forage
-  * [ ] View Forages by date
-* [ ] Review existing data layer code
-  * [ ] Confirm that every class method is used
-  * [ ] Confirm that data persistence works as expected
-* [ ] Review existing domain layer code
-  * [ ] Confirm that every class method is used
-  * [ ] Confirm that data validation is implemented fully and correctly
+  * [X] Add a forage
+  * [X] View forages by date
+* [X] Step through existing code to confirm understanding
+* [X] Manually test existing features
+  * [X] Add an Item
+  * [X] View Items
+  * [X] View Foragers
+  * [X] Add a Forage
+  * [X] View Forages by date
+* [X] Review existing data layer code
+  * [X] Confirm that every class method is used
+  * [X] Confirm that data persistence works as expected
+* [X] Review existing domain layer code
+  * [X] Confirm that every class method is used
+  * [X] Confirm that data validation is implemented fully and correctly
 * [ ] Review requirements and general project information to validate understanding
-* [ ] Review existing unit tests to ensure that they work as expected
+* [ X Review existing unit tests to ensure that they work as expected
 * [ ] Document findings
   * [ ] Move all TODOs into this README that are actually bugs or things to fix
   * [ ] Commit TODOs before making any code changes
 
 ### New Development
 
-* [ ] Add Spring DI to the project
-* [ ] Add a Forager
+* [X] Add Spring DI to the project
+* [X] Add a Forager
+  * [X] Add unit tests
+* [X] Create a report that displays the kilograms of each Item collected on one day
   * [ ] Add unit tests
-* [ ] Create a report that displays the kilograms of each Item collected on one day
+  * [X] Use streams or loops (and intermediate variables)
+* [X] Create a report that displays the total value of each Category collected on one day
   * [ ] Add unit tests
-  * [ ] Use streams or loops (and intermediate variables)
-* [ ] Create a report that displays the total value of each Category collected on one day
-  * [ ] Add unit tests
-  * [ ] Use streams or loops (and intermediate variables)
+  * [X] Use streams or loops (and intermediate variables)
 
 ### Existing Issues/Bugs
 
 #### High Priority (must fix)
 
-1. [ ] Add the "View Foragers" feature
+1. [X] Add the "View Foragers" feature
   * This feature was supposed to be implemented but wasn't even represented in the menu (as an unimplemented item)
-1. [ ] Update the `ForageService.validate()` method to validate that the combination of date, item, forager is unique
-  * [ ] Add unit test
+1. [X] Update the `ForageService.validate()` method to validate that the combination of date, item, forager is unique
+  * [X] Add unit test
 
 #### Medium Priority (fix if you have time)
 
 1. [ ] Update the `ForageService.validateFields()` method to check if the kilograms is a positive number (currently is testing the lower bound as less than `0`)
   * [ ] Add unit test
-1. [ ] Update the validations in the `ItemService.add()` method to validate that the item category has been provided
-  * [ ] Add unit test
-1. [ ] Update the validations in the `ItemService.add()` method to correctly validate the $/Kg field value
-  * [ ] If the category is edible, medicinal, validate that the $/kr is between $0.01 and $7500.00
-  * [ ] If the category is inedible, poisonous, validate that the $/kg is $0
-  * [ ] Add unit tests
+1. [X] Update the validations in the `ItemService.add()` method to validate that the item category has been provided
+  * [X] Add unit test
+1. [X] Update the validations in the `ItemService.add()` method to correctly validate the $/Kg field value
+  * [X] If the category is edible, medicinal, validate that the $/kr is between $0.01 and $7500.00
+  * [X] If the category is inedible, poisonous, validate that the $/kg is $0
+  * [X] Add unit tests
 
 #### Low Priority (fix as stretch goals)
 

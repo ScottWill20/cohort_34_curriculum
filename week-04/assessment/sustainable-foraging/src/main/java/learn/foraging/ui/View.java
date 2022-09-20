@@ -4,12 +4,18 @@ import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.DoubleSummaryStatistics;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class View {
 
     private final ConsoleIO io;
@@ -41,6 +47,11 @@ public class View {
 
     public String getForagerNamePrefix() {
         return io.readRequiredString("Forager last name starts with: ");
+    }
+
+    public String getForagerStateAbbreviation () {
+        displayHeader(MainMenuOption.VIEW_FORAGERS_BY_STATE.getMessage());
+        return io.readRequiredString("Provide a State (abbreviated): ");
     }
 
     public Forager chooseForager(List<Forager> foragers) {
@@ -108,6 +119,15 @@ public class View {
         String message = String.format("Kilograms of %s: ", item.getName());
         forage.setKilograms(io.readDouble(message, 0.001, 250.0));
         return forage;
+    }
+
+    public Forager makeForager() {
+        displayHeader(MainMenuOption.ADD_FORAGER.getMessage());
+        Forager forager = new Forager();
+        forager.setFirstName(io.readRequiredString("First Name: "));
+        forager.setLastName(io.readRequiredString("Last Name: "));
+        forager.setState(io.readRequiredString("State (abbreviated): "));
+        return forager;
     }
 
     public Item makeItem() {
@@ -183,14 +203,40 @@ public class View {
         }
     }
 
-    public void displayItems(List<Item> items) {
+    public void displayForagers(List<Forager> foragers) {
+        if (foragers == null || foragers.isEmpty()) {
+            io.println("No foragers found.");
+            return;
+        }
+        for (Forager forager : foragers) {
+            io.printf("%s %s%n",
+                    forager.getFirstName(),
+                    forager.getLastName());
+        }
+    }
 
+    public void displayItemDayInKg(Map<Category, DoubleSummaryStatistics> foragesByDate) {
+        for (Item item : foragesByDate.keySet()) {
+            DoubleSummaryStatistics itemWeight = foragesByDate.get(item);
+            BigDecimal roundItemWeight = BigDecimal.valueOf(itemWeight.getSum()).setScale(2, RoundingMode.HALF_UP);
+            System.out.println(item.getName() + ": " + roundItemWeight + " kg");
+        }
+    }
+
+    // It looks like I forgot to push my printReport methods that I had commented out here -
+        // all they consisted of was the for() loop directly under the Map<> stream in the report methods in Controller.
+        // All keys were null using this printMethod, but the values were correct
+
+    public void displayItems(List<Item> items) {
         if (items.size() == 0) {
             io.println("No items found");
         }
-
         for (Item item : items) {
-            io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
+            io.printf("%s: %s, %s, %.2f $/kg%n",
+                    item.getId(),
+                    item.getName(),
+                    item.getCategory(),
+                    item.getDollarPerKilogram());
         }
     }
 }

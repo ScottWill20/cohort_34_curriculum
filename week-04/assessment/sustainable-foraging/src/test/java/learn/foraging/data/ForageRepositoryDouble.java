@@ -32,7 +32,7 @@ public class ForageRepositoryDouble implements ForageRepository {
 
     @Override
     public Forage add(Forage forage) throws DataException {
-        forage.setId(java.util.UUID.randomUUID().toString());
+        forage.setId("498604db-b6d6-4599-a503-3d8190fda823");
         forages.add(forage);
         return forage;
     }

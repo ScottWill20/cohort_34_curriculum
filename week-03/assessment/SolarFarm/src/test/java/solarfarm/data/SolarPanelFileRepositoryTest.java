@@ -73,7 +73,7 @@ class SolarPanelFileRepositoryTest {
         assertEquals(21,idTen.getColumn());
         assertEquals(2016,idTen.getYearInstalled());
         assertEquals(SolarPanelMaterial.AMSI,idTen.getMaterial());
-        assertEquals(false,idTen.isTracking());
+        assertFalse(idTen.isTracking());
 
         SolarPanel idSixteen = all.get(15);
         assertEquals(16, idSixteen.getId());
@@ -82,7 +82,7 @@ class SolarPanelFileRepositoryTest {
         assertEquals(33,idSixteen.getColumn());
         assertEquals(2022,idSixteen.getYearInstalled());
         assertEquals(SolarPanelMaterial.AMSI,idSixteen.getMaterial());
-        assertEquals(true,idSixteen.isTracking());
+        assertTrue(idSixteen.isTracking());
     }
 
     @Test

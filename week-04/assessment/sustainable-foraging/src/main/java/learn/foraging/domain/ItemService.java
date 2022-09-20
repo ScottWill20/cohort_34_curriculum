@@ -4,11 +4,13 @@ import learn.foraging.data.DataException;
 import learn.foraging.data.ItemRepository;
 import learn.foraging.models.Category;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ItemService {
 
     private final ItemRepository repository;
@@ -31,6 +33,11 @@ public class ItemService {
             return result;
         }
 
+        // TODO validate that Category has been provided
+        if (item.getCategory() == null) {
+            result.addErrorMessage("Please pick a valid category.");
+        }
+
         if (item.getName() == null || item.getName().isBlank()) {
             result.addErrorMessage("Item name is required.");
         } else if (repository.findAll().stream()
@@ -38,12 +45,19 @@ public class ItemService {
             result.addErrorMessage(String.format("Item '%s' is a duplicate.", item.getName()));
         }
 
+        // TODO valiate that poisonous and inedible plants must be worth $0.00
+        if (item.getCategory() == Category.INEDIBLE ||
+                item.getCategory() == Category.POISONOUS
+                        && !item.getDollarPerKilogram().equals(BigDecimal.ZERO)) {
+            result.addErrorMessage("Poisonous and Inedible plants must be $0.00/kg.");
+        }
         if (item.getDollarPerKilogram() == null) {
             result.addErrorMessage("$/Kg is required.");
         } else if (item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) < 0
                 || item.getDollarPerKilogram().compareTo(new BigDecimal("7500.00")) > 0) {
             result.addErrorMessage("%/Kg must be between 0.00 and 7500.00.");
         }
+
 
         if (!result.isSuccess()) {
             return result;

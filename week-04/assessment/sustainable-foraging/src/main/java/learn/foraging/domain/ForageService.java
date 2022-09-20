@@ -1,20 +1,17 @@
 package learn.foraging.domain;
 
-import learn.foraging.data.DataException;
-import learn.foraging.data.ForageRepository;
-import learn.foraging.data.ForagerRepository;
-import learn.foraging.data.ItemRepository;
+import learn.foraging.data.*;
+import learn.foraging.models.Category;
 import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public class ForageService {
 
     private final ForageRepository forageRepository;
@@ -53,6 +50,22 @@ public class ForageService {
 
         return result;
     }
+
+//     TODO reportKgPerDay()
+
+    public List<Forage> reportKgPerDay(LocalDate date) {
+        findByDate(date);
+        List<Forage> forages = forageRepository.findByDate(date);
+        forages.stream().collect(Collectors.groupingBy(Forage::getItem,
+                        Collectors.summarizingDouble(Forage::getKilograms)));
+
+        return forages;
+
+    }
+
+    // TODO publicReportItemCategoryValue()
+
+
 
     public int generate(LocalDate start, LocalDate end, int count) throws DataException {
 
@@ -96,6 +109,12 @@ public class ForageService {
             return result;
         }
 
+        // TODO implement validateUnique in validate
+        validateUnique(forage, result);
+        if (!result.isSuccess()) {
+            return result;
+        }
+
         validateChildrenExist(forage, result);
 
         return result;
@@ -123,6 +142,26 @@ public class ForageService {
         return result;
     }
 
+    // TODO validateUnique
+    private void validateUnique(Forage forage, Result<Forage> result) {
+
+        LocalDate date = forage.getDate();
+        List<Forage> dupeForage = forageRepository.findByDate(date).stream()
+                .filter(f -> f.getDate().equals(forage.getDate())
+                        && f.getItem().getId() == forage.getItem().getId()
+                        && f.getForager().getId().equals(forage.getForager().getId())
+                        && !f.getId().equalsIgnoreCase(forage.getId())).toList();
+
+        if (dupeForage.size() > 0) {
+            result.addErrorMessage(String.format("Forage on %s of %s by %s %s is a duplicate.",
+                    forage.getDate(),
+                    forage.getItem().getName(),
+                    forage.getForager().getFirstName(),
+                    forage.getForager().getLastName()));
+        }
+
+    }
+
     private void validateFields(Forage forage, Result<Forage> result) {
         // No future dates.
         if (forage.getDate().isAfter(LocalDate.now())) {
@@ -132,6 +171,7 @@ public class ForageService {
         if (forage.getKilograms() <= 0 || forage.getKilograms() > 250.0) {
             result.addErrorMessage("Kilograms must be a positive number less than 250.0");
         }
+
     }
 
     private void validateChildrenExist(Forage forage, Result<Forage> result) {

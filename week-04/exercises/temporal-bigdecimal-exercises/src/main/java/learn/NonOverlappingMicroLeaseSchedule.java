@@ -1,6 +1,7 @@
 package learn;
 
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -27,22 +28,27 @@ public class NonOverlappingMicroLeaseSchedule {
      * false if not valid
      */
     public boolean add(MicroLease lease) {
-        if (lease == null) {
+        if (lease == null)
+            return false;
+        if (lease.getStart() == null || lease.getEnd() == null) {
             return false;
         }
-        if ((lease.getStart() == null) || (lease.getEnd() == null)) {
+        int daysBetween = Integer.parseInt(String.valueOf(ChronoUnit.DAYS.between(lease.getStart(), lease.getEnd())));
+        if (daysBetween < 0){
             return false;
         }
-
-        if (lease.getStart().isAfter(lease.getEnd())) {
-            return false;
-        }
-//        Duration difference = Duration.between(lease.getStart(), lease.getEnd());
-//        if (leases.contains(difference.getSeconds())) {
-//            return false;
-//        }
 
         leases.add(lease);
+        if (leases.size() > 1) {
+            for (int i = leases.size() - 2; i < leases.size() - 1; i++) {
+                int daysBetween2 = Integer.parseInt(String.valueOf(ChronoUnit.DAYS.between(leases.get(i).getEnd(), lease.getStart())));
+                if (daysBetween2 < 0) {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 }
+

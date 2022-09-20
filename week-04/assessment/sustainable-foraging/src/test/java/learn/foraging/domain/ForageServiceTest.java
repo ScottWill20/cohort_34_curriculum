@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ForageServiceTest {
-
+    final LocalDate date = LocalDate.of(2020, 6, 26);
     ForageService service = new ForageService(
             new ForageRepositoryDouble(),
             new ForagerRepositoryDouble(),
@@ -69,6 +69,25 @@ class ForageServiceTest {
         Result<Forage> result = service.add(forage);
         assertFalse(result.isSuccess());
     }
+
+    @Test
+    void shouldNotAddDuplicateForage() throws DataException {
+        Forage forage = new Forage();
+        forage.setId(" ");
+        forage.setDate(date);
+        forage.setForager(ForagerRepositoryDouble.FORAGER);
+        forage.setItem(ItemRepositoryDouble.ITEM);
+        forage.setKilograms(1.25);
+
+        Result<Forage> actual = service.add(forage);
+        assertFalse(actual.isSuccess());
+        assertEquals("Forage on 2020-06-26 of Chanterelle by Jilly Sisse is a duplicate.", actual.getErrorMessages().get(0));
+    }
+
+//    @Test
+//    void shouldPrintKilogramsOfItemInDay() {
+//
+//    }
 
 
 }

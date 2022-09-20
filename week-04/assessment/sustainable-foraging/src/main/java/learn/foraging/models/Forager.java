@@ -7,6 +7,14 @@ public class Forager {
     private String lastName;
     private String state;
 
+    public Forager(String id, String firstName, String lastName, String state) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.state = state;
+    }
+    public Forager() {}
+
     public String getId() {
         return id;
     }

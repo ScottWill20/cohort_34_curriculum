@@ -28,6 +28,18 @@ class ItemServiceTest {
         assertFalse(result.isSuccess());
     }
 
+    // TODO test that category has been provided
+    @Test
+    void shouldNotAcceptNullCategory() throws DataException {
+        Item item = new Item(0,"Test Item",null, new BigDecimal("3.00"));
+        Result<Item> result = service.add(item);
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void shouldSaveZeroDollarsIfPoisonousOrInedible() {
+
+    }
     @Test
     void shouldNotSaveNullDollars() throws DataException {
         Item item = new Item(0, "Test Item", Category.EDIBLE, null);
