@@ -5,15 +5,15 @@
 
 _TODO_ Add time estimates to each of the top-level tasks
 
-* [ ] Create a new GitHub repo for this assessment (#.# hours)
-  * [ ] Update the README with the contents from this file
-  * [ ] Add the instruction team as collaborators
+* [x] Create a new GitHub repo for this assessment (#.# hours)
+  * [x] Update the README with the contents from this file
+  * [x] Add the instruction team as collaborators
 
-* [ ] Review the requirements (#.# hours)
+* [x] Review the requirements (#.# hours)
 
-* [ ] Download the provided data (#.# hours)
+* [x] Download the provided data (#.# hours)
 
-* [ ] Review the provided data (#.# hours)
+* [x] Review the provided data (#.# hours)
 
 * [ ] Identify any research that I need to do (#.# hours)
 
@@ -21,21 +21,21 @@ _TODO_ Add time estimates to each of the top-level tasks
 
 _These steps can be done in class on Friday_
 
-* [ ] Design initial database schema (#.# hours)
-  * [ ] Identify the tables that are needed
-  * [ ] For each table...
+* [x] Design initial database schema (#.# hours)
+  * [x] Identify the tables that are needed
+  * [x] For each table...
     * Define a primary key
     * Define its columns (name, data type, and nullability)
-  * [ ] Identify the relationships between tables
+  * [x] Identify the relationships between tables
     * Define any foreign keys
-  * [ ] Identify any default or unique constraints
+  * [x] Identify any default or unique constraints
 
-* [ ] Draw a diagram of the database schema (#.# hours)
-  * [ ] Share with one or more classmates for feedback
-  * [ ] Update database schema as needed
-  * [ ] Share updated diagram with one or more classmates
-  * [ ] Update database schema as needed
-  * [ ] Share with assigned code reviewer for feedback
+* [x] Draw a diagram of the database schema (#.# hours)
+  * [x] Share with one or more classmates for feedback
+  * [x] Update database schema as needed
+  * [x] Share updated diagram with one or more classmates
+  * [x] Update database schema as needed
+  * [x] Share with assigned code reviewer for feedback
 
 _Acceptable diagram formats_
 
