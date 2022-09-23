@@ -1,6 +1,6 @@
 -- drop database if exists rcttc;
 -- create database rcttc;
--- use rcttc;
+use rcttc;
 
 create table `rcttc_data` (
   `customer_first` text,
