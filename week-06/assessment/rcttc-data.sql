@@ -328,14 +328,14 @@ where customer_id in (
 				group by cid having count(customer_id) = 1);
 set sql_safe_updates = 1;
 
-select * from ticket
-where show_id = 1;
+-- select * from ticket
+-- where show_id = 1;
         
         
 -- 2.) Delete the customer Liv Egle of Germany.
 
-select * from customer
-order by last_name;
+-- select * from customer
+-- order by last_name;
 
 -- Liv Egle of Germany's customer ID is 65.
 
