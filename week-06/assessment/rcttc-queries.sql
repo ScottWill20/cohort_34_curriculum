@@ -50,21 +50,21 @@ th.theater_name, th.address, th.phone, th.email
         order by c.customer_id asc;
 
 -- Count total tickets purchased per customer.
-select  c.customer_id, concat(c.first_name, ' ', c.last_name) 'customer', count(ticket_id) 'total tickets'
+select  c.customer_id, concat(c.first_name, ' ', c.last_name) customer, count(ticket_id) total_tickets
 	from ticket t
 		inner join customer c on c.customer_id = t.customer_id
 		group by t.customer_id
 		order by count(ticket_id) desc;
         
 -- Calculate the total revenue per show based on tickets sold.
-select s.show_id, s.title, sum(s.ticket_price) * count(t.ticket_id) revenue_show
+select s.show_id, s.title, s.ticket_price * count(t.ticket_id) revenue_show
 	from ticket t
 		inner join shows s on s.show_id = t.show_id
 		group by s.show_id
 		order by s.show_id;
 
 -- Calculate the total revenue per theater based on tickets sold.
-select th.theater_id, th.theater_name, sum(s.ticket_price) * count(ti.ticket_id) revenue_theater
+select th.theater_id, th.theater_name, s.ticket_price * count(ti.ticket_id) revenue_theater
 	from ticket ti
 		inner join shows s on s.show_id = ti.show_id
 		inner join theater th on th.theater_id = s.theater_id   
@@ -72,7 +72,7 @@ select th.theater_id, th.theater_name, sum(s.ticket_price) * count(ti.ticket_id)
         order by revenue_theater desc;
 
 -- Who is the biggest supporter of RCTTC? Who spent the most in 2021?
-select c.customer_id, concat(c.first_name, ' ', c.last_name) 'customer', sum(s.ticket_price) * count(ti.ticket_id) top_customers
+select c.customer_id, concat(c.first_name, ' ', c.last_name) customer, s.ticket_price * count(ti.ticket_id) top_customers
 	from ticket ti
 		inner join customer c on c.customer_id = ti.customer_id
         inner join shows s on s.show_id = ti.show_id
