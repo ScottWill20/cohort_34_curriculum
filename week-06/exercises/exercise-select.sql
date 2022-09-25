@@ -12,28 +12,73 @@ select * from employee;
 -- Select the employee_id, first_name, and last_name from employee.
 -- Expected: 33 Rows, 3 columns
 
+select
+	employee_id,
+    first_name,
+    last_name
+from employee;    
+
 -- Select the employee_id, first_name, and start_date from employee
 -- where the last_name equals 'Gravel'.
 -- Expected: 7 Rows, 3 columns
+
+select
+	employee_id,
+    first_name,
+    start_date
+from employee
+where last_name = 'Gravel';
 
 -- Select first_name, last_name, and city from customer
 -- where the city equals 'Ajax'.
 -- Expected: 13 Rows, 3 columns
 
+select
+first_name,
+last_name,
+city
+from customer
+where city = 'Ajax';
+
 -- Select last_name, email_address, and customer_since from customer
 -- for all customers with a customer_since value in the year 2019.
 -- Expected: 100 Rows, 3 columns
+
+select 
+last_name,
+email_address,
+customer_since
+from customer
+where customer_since between '2019-01-01' and '2019-12-31';
 
 -- If you solved the previous task without `between`, use `between`.
 -- If you used `between`, solve it with `and`.
 -- Expected: 100 Rows, 3 columns
 
+select
+	last_name,
+	email_address,
+	customer_since
+from customer
+where customer_since > '2019-01-01' 
+and customer_since < '2019-12-31';
+
 -- Find 2019 customers a third time, but this time sort them by customer_since descending.
 -- Expected: 100 Rows, 3 columns
+
+select 
+last_name,
+email_address,
+customer_since
+from customer
+where customer_since between '2019-01-01' and '2019-12-31'
+order by customer_since desc;
 
 -- Select first_name, last_name, phone, and address from customer.
 -- Sort by last_name descending and first_name ascending.
 -- Expected: 1000 Rows, 4 columns
+
+
 
 -- Which customer city comes last in the alphabet?
 -- Expected: Woodstock
