@@ -345,5 +345,6 @@ where customer_id = 65;
 delete from customer
 where customer_id = 65;
 
-select * from customer
-where customer_id between 64 and 66; -- Liv is gone
+-- select * from customer
+-- where customer_id between 64 and 66; 
+		-- Liv is gone
