@@ -3,11 +3,12 @@ package learn.solarfarm.data;
 import learn.solarfarm.models.Material;
 import learn.solarfarm.models.SolarPanel;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+//@Repository
 public class SolarPanelFileRepository implements SolarPanelRepository {
     private final String filePath;
     private final String delimiter = "~";

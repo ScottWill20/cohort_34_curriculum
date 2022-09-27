@@ -16,7 +16,6 @@ import java.util.List;
 
 @ComponentScan
 public class App {
-
     public static void main(String[] args) throws DataAccessException {
         System.out.println("Welcome to Solar Farm!");
 
@@ -25,13 +24,13 @@ public class App {
 
         List<SolarPanel> panels = repository.findAll();
 
-        for (SolarPanel solarPanel : panels) {
-            System.out.printf("ID: %s section: %s row: %s column: %s Year Installed: %s Material: %s Is Tracking: %s %n", solarPanel.getId(), solarPanel.getSection(), solarPanel.getRow(), solarPanel.getColumn(), solarPanel.getYearInstalled(), solarPanel.getMaterial(), solarPanel.isTracking());
+        for(SolarPanel solarPanel : panels){
+            System.out.printf("ID: %s Section: %s Row: %s Column: %s Year Installed: %s Material: %s is Tracking: %s%n", solarPanel.getId(), solarPanel.getSection(), solarPanel.getRow(), solarPanel.getColumn(), solarPanel.getYearInstalled(), solarPanel.getMaterial(), solarPanel.isTracking());
         }
 
     }
 
-    // NOTE: THIS IS TEMPORARY !!!!!!!!!!!!! \\
+    // NOTE: THIS IS TEMPORARY !!!!!!
 
     @Bean
     public DataSource getDataSource() {

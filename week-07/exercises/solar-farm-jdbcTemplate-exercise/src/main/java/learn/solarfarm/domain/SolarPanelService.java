@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Year;
 import java.util.List;
-
 @Service
 public class SolarPanelService {
     public final static int MAX_ROW_COLUMN = 250;
@@ -82,11 +81,11 @@ public class SolarPanelService {
             result.addErrorMessage("SolarPanel `section` is required.");
         }
 
-        if (solarPanel.getRow() < 1 || solarPanel.getRow() > MAX_ROW_COLUMN) {
+        if (solarPanel.getRow() < 1 || solarPanel.getRow() >= MAX_ROW_COLUMN) {
             result.addErrorMessage("SolarPanel `row` must be a positive number less than or equal to %s.", MAX_ROW_COLUMN);
         }
 
-        if (solarPanel.getColumn() < 1 || solarPanel.getColumn() > MAX_ROW_COLUMN) {
+        if (solarPanel.getColumn() < 1 || solarPanel.getColumn() >= MAX_ROW_COLUMN) {
             result.addErrorMessage("SolarPanel `column` must be a positive number less than or equal to %s.", MAX_ROW_COLUMN);
         }
 
