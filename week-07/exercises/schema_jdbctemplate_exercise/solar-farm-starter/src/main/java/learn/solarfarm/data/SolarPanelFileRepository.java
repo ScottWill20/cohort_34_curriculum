@@ -2,6 +2,7 @@ package learn.solarfarm.data;
 
 import learn.solarfarm.models.Material;
 import learn.solarfarm.models.SolarPanel;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
     private final String filePath;
     private final String delimiter = "~";
 
-    public SolarPanelFileRepository(String filePath) {
+    public SolarPanelFileRepository(@Value("./data/solarfarm.txt") String filePath) {
         this.filePath = filePath;
     }
 
@@ -75,7 +76,8 @@ public class SolarPanelFileRepository implements SolarPanelRepository {
         return false;
     }
 
-    private List<SolarPanel> findAll() throws DataAccessException {
+    @Override
+   public List<SolarPanel> findAll() throws DataAccessException {
         ArrayList<SolarPanel> result = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             for (String line = reader.readLine(); line != null; line = reader.readLine()) {

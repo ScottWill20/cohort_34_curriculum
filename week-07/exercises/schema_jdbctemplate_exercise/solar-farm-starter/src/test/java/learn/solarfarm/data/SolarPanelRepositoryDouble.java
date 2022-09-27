@@ -16,6 +16,10 @@ public class SolarPanelRepositoryDouble implements SolarPanelRepository {
     }
 
     @Override
+    public List<SolarPanel> findAll() throws DataAccessException {
+        return null;
+    }
+    @Override
     public List<SolarPanel> findBySection(String section) throws DataAccessException {
         ArrayList<SolarPanel> result = new ArrayList<>();
         for (SolarPanel sp : solarPanels) {
@@ -56,4 +60,6 @@ public class SolarPanelRepositoryDouble implements SolarPanelRepository {
     public boolean deleteById(int id) throws DataAccessException {
         return findById(id) != null;
     }
+
+
 }
