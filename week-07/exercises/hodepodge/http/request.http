@@ -23,7 +23,7 @@ POST http://localhost:8080/sheep HTTP/1.1
 Content-Type: application/json
 
 {
-    "Amount": 10
+    "amount": 10
 }
 
 ###
