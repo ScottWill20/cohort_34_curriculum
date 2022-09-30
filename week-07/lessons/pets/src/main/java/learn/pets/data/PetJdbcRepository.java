@@ -3,12 +3,16 @@ package learn.pets.data;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import javax.sql.DataSource;
 import learn.pets.models.Pet;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetJdbcRepository {
+@Repository
+@Profile("jdbc")
+public class PetJdbcRepository implements PetRepository{
 
     // 1. Dangerous initialization during construction
     private DataSource dataSource = initDataSource();
