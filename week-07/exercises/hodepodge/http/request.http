@@ -1,0 +1,48 @@
+GET http://localhost:8080/ HTTP/1.1
+
+###
+GET http://localhost:8080/name HTTP/1.1
+
+###
+GET http://localhost:8080/current/time HTTP/1.1
+
+###
+GET http://localhost:8080/greet/Scott Williams HTTP/1.1
+
+###
+PUT http://localhost:8080/sheep HTTP/1.1
+
+###
+GET http://localhost:8080/sheep HTTP/1.1
+
+###
+PUT http://localhost:8080/sheep/5 HTTP/1.1
+
+###
+POST http://localhost:8080/sheep HTTP/1.1
+Content-Type: application/json
+
+{
+    "amount": 10
+}
+
+###
+DELETE http://localhost:8080/sheep HTTP/1.1
+
+
+
+
+###
+GET http://localhost:8080/todo HTTP/1.1
+
+###
+PUT http://localhost:8080/todo HTTP/1.1
+Content-Type: application/json
+
+[
+    "feed the cat",
+    "finish the laundry"
+]
+
+###
+PUT http://localhost:8080/take-a-walk

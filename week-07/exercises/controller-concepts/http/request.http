@@ -1,0 +1,17 @@
+@base_url = http://localhost:8080/pets
+
+POST {{base_url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Gibby",
+    "type": "Cat"
+}
+
+PUT {{base_url}}/9 HTTP/1.1
+Content-Type: application/json
+{
+    "petId": 9,
+    "name": "Midge",
+    "type": "Pug"
+}
