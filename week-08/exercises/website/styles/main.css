@@ -1,0 +1,397 @@
+
+/*CSS Reset*/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /*tells elements to be as big as the width we've given them. if we add padding or a border add that within the width, not in addition to it*/
+    max-width: 100%;
+    /* border: 1px solid grey; */
+}
+
+/*General Styles*/
+
+html{
+    font-size: 62.5%; /* 1 rem === 10px*/
+}
+body{
+    font-size: 1.6rem;
+    color: #4F4F4F;
+    line-height: 1.5;
+}
+h1, h2, h3, h4{
+    letter-spacing: 3px;
+    margin: 2% 0;
+    text-transform: capitalize;
+}
+h1{
+    font-size: 5rem;
+}
+h2{
+    font-size: 3rem;
+}
+h3, h4{
+    font-size: 2.5rem;
+}
+section, footer{
+    padding: 4% 0;
+}
+button{
+    margin: 2% 0;
+    padding: 1% 3%;
+    border-radius: 5px;
+    border: 3px solid #fff;
+    background-color: transparent;
+    font-size: 1.6rem;
+    transition: .5s;
+    color: #fff;
+}
+button:hover{
+    background-color: white;
+    color: black;
+}
+a{
+    text-decoration: none;
+    color: #4F4F4F;
+}
+a:hover{
+    color: black;
+}
+
+/*Helper Classes*/
+.subtitle{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+.flex-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/*Header Section Styles*/
+header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.link{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+}
+
+/*Top Section Styles*/
+
+#top{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    color: white;
+}
+#top div{
+    width: 60%;
+    text-align: center;
+}
+
+/*About Section Styles*/
+
+#about{
+    display: flex;
+}
+#about div{
+    width: 50%;
+}
+.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.text button, form button{
+    border: 3px solid black;
+    color: black;
+}
+.text button:hover, form button:hover{
+    background-color: black;
+    color: white;
+}
+.image img{
+    width: 70%;
+}
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Testimonials Section Styles*/
+
+.testimonials{
+    text-align: center;
+}
+.box{
+    width: 25%;
+    border: 3px solid black;
+    background-color: #FFFAFA;
+    padding: 4%;
+}
+.box img{
+    border-radius: 50%;
+    width: 30%;
+}
+
+/*Logo Section Styles*/
+
+.logoSection{
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+    width: 10%;
+    height: 10vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.one{
+    background-image: url('https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80');
+}
+.two{
+    background-image: url('https://images.unsplash.com/photo-1553835973-dec43bfddbeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+}
+.three{
+    background-image: url('https://images.unsplash.com/photo-1617566347924-ad5ebdaa014e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
+}
+.four{
+    background-image: url('https://images.unsplash.com/photo-1529612700005-e35377bf1415?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+}
+.five{
+    background-image: url('https://images.unsplash.com/photo-1633409361618-c73427e4e206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80');
+}
+
+/*Project Section Styles*/
+
+#project{
+    text-align: center;
+}
+.project{
+    width: 30%;
+    margin: 2% 0;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+.p1{
+    background-image: url('https://images.unsplash.com/photo-1508001300512-4763bb1c5583?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+}
+.p2{
+    background-image: url('https://images.unsplash.com/photo-1502637098811-fa9526d2b659?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80');
+}
+.p3{
+    background-image: url('https://images.unsplash.com/photo-1509389928833-fe62aef36deb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1412&q=80');
+}
+.p4{
+    background-image: url('https://images.unsplash.com/photo-1508790762848-8a3096277c8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1488&q=80');
+}
+.p5{
+    background-image: url('https://images.unsplash.com/photo-1497440001374-f26997328c1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80');
+}
+.p6{
+    background-image: url('https://images.unsplash.com/photo-1592833159155-c62df1b65634?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
+}
+
+/*Empty Section with Background Image*/
+
+.bg-img{
+    height: 40vh;
+    background-size: cover;
+    background-image: url('https://images.unsplash.com/photo-1619253860919-b7255e1bab47?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
+    background-attachment: fixed;
+}
+
+/*Contact Section Styles*/
+
+#contact{
+    display: flex;
+}
+.left, .right{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left > div{
+    width: 50%;
+}
+.left{
+    line-height: 2;
+    text-align: center;
+}
+.right > div{
+    width: 70%;
+}
+input, textarea{
+    width: 100%;
+}
+.basic-info{
+    display: flex;
+    justify-content: space-between;
+}
+.basic-info > div{
+    width: 48%;
+}
+.form-btn{
+    text-align: center;
+}
+.form-btn button{
+    width: 60%;
+}
+.right h3{
+    text-align: center;
+}
+fieldset{
+    border: none;
+}
+
+/*Footer Styles*/
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: #D3D3D3;
+    text-align: center;
+    align-items: center;
+}
+footer > div{
+    width: 33%;
+}
+footer nav{
+    display: flex;
+    flex-direction: column;
+}
+footer nav a{
+    margin: 2% 0;
+}
+footer img{
+    width: 70%;
+}
+
+/*RESPOSIVE STYLES*/
+
+@media(max-width: 800px){
+    /*About Section Styles*/
+    #about .text{
+        width: 60%;
+    }
+    #about .text > div{
+        width: 80%;
+    }
+    .image img{
+        width: 90%;
+    }
+
+    /*Testimonial Section Styles*/
+    .box{
+        width: 30%;
+        padding: 2px;
+    }
+
+    /*Contact Section Styles*/
+    .left{
+        line-height: 1.5;
+        width: 40%;
+    }
+    .right{
+        width: 60%;
+    }
+    .right > div{
+        width: 90%;
+    }
+    /*Footer Section Styles*/
+    footer img{
+        width: 90%;
+    }
+
+} /*This closes our media query - tablet*/
+
+@media(max-width: 500px) {
+    header nav{
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-bottom: 2%;
+    }
+    .link{
+        width: 100%;
+    }
+
+    /*About Section Styles*/
+    #about{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    #about div{
+        width: 100%;
+    }
+    #about .text{
+        width: 100%;
+    }
+    .text div{
+        width: 90%;
+    }
+    .text{
+        margin-top: 2%;
+    }
+    
+    /*Testimonial Section Styles*/
+    .box{
+        width: 90%;
+        margin:2% 0;
+    }
+
+    /*Project Section Styles*/
+    .project{
+        width: 45%;
+    }
+
+    /*Background Image Styles*/
+    .bg-img{
+        height: 30vh;
+    }
+
+    /*Contact Section Styles*/
+    #contact{
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .left, .right{
+        width: 90%;
+    }
+
+    /*Footer Section Styles*/
+    footer{
+        flex-direction: column;
+    }
+    footer > div {
+        width: 100%;
+    }
+
+}/*This closes our media query - phone*/
