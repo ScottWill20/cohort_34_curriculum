@@ -20,26 +20,36 @@ final potters     | 16 | 21 | 10 | 11 | 55 |  5 |
 */
 
 // Change these numbers to test each scenario.
-let swimmers = 11;
-let archers = 0;
-let potters = 11;
+let swimmers = 9;
+let archers = 10;
+let potters = 12;
 
 // Write your distribution code here.
 // One set of code must work for all scenarios.
 
-if (swimmers != 2 % 0 && archers - swimmers >= potters) {
-    potters += swimmers;
-    swimmers = 0;
-} else {
-    const newArchers = Math.round(swimmers / 2);
-    const newPotters = Math.floor(swimmers / 2);
+// if (swimmers % 2 != 0) {
 
-    archers += newArchers;
-    potters += newPotters;
-    swimmers = 0;
-}
+//     Math.max(potters, archers)
+
+
+//    let swimmersMinusOne = swimmers - 1;
+//    let halfOfTheSwimmers = swimmersMinusOne / 2;
+//    archers += halfOfTheSwimmers;
+//    potters += halfOfTheSwimmers + 1;
+
+//    console.log(`Swimmers: ${swimmers}`);
+//    console.log(`Archers: ${archers}`);
+//    console.log(`Potters: ${potters}`);
+
+
+// } else {
+
+//     console.log(`Swimmers: ${swimmers}`);
+//     console.log(`Archers: ${archers}`);
+//     console.log(`Potters: ${potters}`);
+// }
 
 // Confirm results for each scenario.
-console.log(`Swimmers: ${swimmers}`);
-console.log(`Archers: ${archers}`);
-console.log(`Potters: ${potters}`);
+// console.log(`Swimmers: ${swimmers}`);
+// console.log(`Archers: ${archers}`);
+// console.log(`Potters: ${potters}`);
