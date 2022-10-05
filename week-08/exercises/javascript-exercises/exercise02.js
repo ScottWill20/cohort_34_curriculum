@@ -20,36 +20,42 @@ final potters     | 16 | 21 | 10 | 11 | 55 |  5 |
 */
 
 // Change these numbers to test each scenario.
-let swimmers = 9;
-let archers = 10;
-let potters = 12;
+let swimmers = 3;
+let archers = 3;
+let potters = 3;
 
 // Write your distribution code here.
 // One set of code must work for all scenarios.
 
-// if (swimmers % 2 != 0) {
+// check if number of swimmers is not even 
+if (swimmers % 2 !== 0) {
+    // add swimmers to the activity with the least participants until numbers are even 
+    if (archers < potters) {
+        // add swimmers to archers 
+        while (archers < potters) {
+            swimmers--;
+            archers++
+            if (swimmers === 0) break; 
+        }
+    } else { 
+        // add swimmers to potters
+        while (potters < archers) {
+            swimmers--;
+            potters++;
+            if (swimmers === 0) break; 
+        }
+    }
 
-//     Math.max(potters, archers)
+    // - then distribute swimmers evenly, starting with pottery first.
+    if (swimmers > 0){
+        potters += Math.floor(swimmers / 2) + 1;
+        archers += Math.floor(swimmers / 2);
+        swimmers = 0;
+    }
 
-
-//    let swimmersMinusOne = swimmers - 1;
-//    let halfOfTheSwimmers = swimmersMinusOne / 2;
-//    archers += halfOfTheSwimmers;
-//    potters += halfOfTheSwimmers + 1;
-
-//    console.log(`Swimmers: ${swimmers}`);
-//    console.log(`Archers: ${archers}`);
-//    console.log(`Potters: ${potters}`);
-
-
-// } else {
-
-//     console.log(`Swimmers: ${swimmers}`);
-//     console.log(`Archers: ${archers}`);
-//     console.log(`Potters: ${potters}`);
-// }
+}
 
 // Confirm results for each scenario.
-// console.log(`Swimmers: ${swimmers}`);
-// console.log(`Archers: ${archers}`);
-// console.log(`Potters: ${potters}`);
+console.log(`Swimmers: ${swimmers}`);
+console.log(`Archers: ${archers}`);
+console.log(`Potters: ${potters}`);

@@ -12,6 +12,15 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function mergeAndRemoveDuplicates(arr1, arr2) {
+    return [...arr1, ...arr2].reduce((acc, curVal) => {
+        if (!acc.includes(curVal)) {
+            acc.push(curVal);
+        }
+        return acc;
+    }, []);
+}
+
 assert.deepStrictEqual(mergeAndRemoveDuplicates([1, 2], [2, 3]), [1, 2, 3]);
 assert.deepStrictEqual(mergeAndRemoveDuplicates([1, 1, 2], [2, 2, 3]), [1, 2, 3]);
 assert.deepStrictEqual(mergeAndRemoveDuplicates(["one", 2, true], [true, false, "two"]), ["one", 2, true, false, "two"]);

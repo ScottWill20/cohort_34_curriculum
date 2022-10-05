@@ -13,6 +13,10 @@ firecracker
 aeiouaeiouaeiouaeiouaeiou
 */
 
+function runFunction(input) {
+    input();
+}
+
 function f1() {
     console.log("one");
 }

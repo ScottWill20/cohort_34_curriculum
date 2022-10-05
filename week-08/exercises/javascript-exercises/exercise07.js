@@ -6,19 +6,22 @@ const assert = require("assert");
 // If the string doesn't contain vowels, `value` is null, 
 // or `value` is undefined, return an empty string.
 
-// function getFirstVowel(value) {
-//     if (value === null || value === undefined) return "";
+function getFirstVowel(value) {
+    // if value is null or undefined, return an empty string 
+    if (value === null || value === undefined) return "";
 
-//     const vowels = "aeiou"
-//     value = value.toLowerCase();
+    // create a string of vowels 
+    const vowels = "aeiouAEIOU";
+    // loop through input value
+    for (let i=0; i < value.length; i++){
+        // if character is in string of vowels return true 
+        if (vowels.includes(value.charAt(i))){
+            return value.charAt(i);
+        }
+    }
 
-//     for(let i = 0; i < value.length; i++) {
-//         if (vowels.includes(value.charAt(i))) {
-//             return value.charAt(i);
-//         }
-//     }
-//     return "";
-// }
+    return ""; 
+}
 
 // Node's assert library will test your function.
 // Execute this exercise.
