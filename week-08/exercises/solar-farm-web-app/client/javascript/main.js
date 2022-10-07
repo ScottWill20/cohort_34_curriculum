@@ -158,7 +158,7 @@ function doPost(solarPanel){
         if(response.status === 201 || response.status === 400){
             return response.json();
         }else{
-            return Promise.reject(`Unexpected status code: ${reponse.status}`);
+            return Promise.reject(`Unexpected status code: ${response.status}`);
         }
     })
     .then(data =>{
