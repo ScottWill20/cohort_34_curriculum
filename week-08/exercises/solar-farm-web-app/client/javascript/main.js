@@ -46,9 +46,9 @@ function renderList(solarPanels){
                     <td>${sp.yearInstalled}</td>
                     <td>${sp.material}</td>
                     <td>${sp.tracking ? 'Yes' : 'No'}</td>
-                    <td>
-                        <button onclick="handleEditPanel(${sp.id})">Edit</button>
-                        <button onclick="handleDeletePanel(${sp.id})">Delete</button>
+                    <td class="btnColumn">
+                        <button class="btn btn-info" onclick="handleEditPanel(${sp.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="handleDeletePanel(${sp.id})">Delete</button>
                     </td>
                 </tr>
                 `;
