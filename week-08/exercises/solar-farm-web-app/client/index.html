@@ -11,7 +11,6 @@
 
     <div id="formContainer">
         <h2 id="formHeading">Add Solar Panel</h2>
-        
         <div id="errors"></div>
         <form onsubmit="handleSubmit(event)" id="form">
             <div class="form-group">
@@ -46,10 +45,13 @@
             </label>
             </div>
             <button type="submit" id="formSubmitButton">Add Solar Panel</button>
-            <button type="button" onclick="">Cancel</button>
+            <button type="button" onclick="resetState()">Cancel</button>
         </form>
     </div>
 
+    <div id="listContainer">
+        <h2>Solar Panels</h2>
+        <button onclick="handleAddPanel()">Add Solar Panel</button>
         <table>
             <thead>
                 <tr>
@@ -65,6 +67,7 @@
 
             </tbody>
         </table>
+    </div>
     
     <script src="javascript/main.js"></script>
 </body>
