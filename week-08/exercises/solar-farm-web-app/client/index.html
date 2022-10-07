@@ -8,6 +8,48 @@
 </head>
 <body>
     <h1>Solar Farm</h1>
+
+    <div id="formContainer">
+        <h2 id="formHeading">Add Solar Panel</h2>
+        
+        <div id="errors"></div>
+        <form onsubmit="handleSubmit(event)" id="form">
+            <div class="form-group">
+                <label for="section">Section</label>
+                <input id="section" name="section" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="row">Row</label>
+                <input id="row" name="row" type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="column">Column</label>
+                <input id="column" name="column" type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="yearInstalled">Year Installed</label>
+                <input id="yearInstalled" name="yearInstalled" type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="material">Material</label>
+                <select name="material" id="material" class="form-control">
+                    <option value="POLY_SI">POLY_SI</option>
+                    <option value="MONO_SI">MONO_SI</option>
+                    <option value="A_SI">A_SI</option>
+                    <option value="CD_TE">CD_TE</option>
+                    <option value="CIGS">CIGS</option>
+                </select>
+            </div>
+            <div class="form-group">
+            <label for="tracking">Is Tracking?
+                <input type="checkbox" name="tracking" id="tracking">
+            </label>
+            </div>
+            <button type="submit" id="formSubmitButton">Add Solar Panel</button>
+            <button type="button" onclick="">Cancel</button>
+        </form>
+    </div>
+
         <table>
             <thead>
                 <tr>
