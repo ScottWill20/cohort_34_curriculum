@@ -1,83 +1,40 @@
-"use strict";
 
-// prompt-sync exports a create function
-const createPrompt = require("prompt-sync");
-// create a new prompt function with the create function.
-const prompt = createPrompt();
+import { readInt, readString } from './standard-in.js';
+import * as players from './players.js';
+import Game from './Game.js';
 
-// Generates a random integer.
-// maxExclusive: the maximum value, not included
-// Example: randomInt(5) will generate 1 of 5 values
-// between 0 and 4.
-function randomInt(maxExclusive) {
-    return Math.floor(Math.random() * maxExclusive);
-}
+function getPlayer() {
 
-// Prompts the user for an integer between min and max.
-// Re-prompts if the input is not a number 
-// or is not in the valid range.
-function readInt(message, min, max) {
+    console.log("Do you want to play as:");
+    console.log("1. Human");
+    console.log("2. Computer");
 
-    let valid = false;
-    let result;
-
-    do {
-        let input = prompt(message);
-        result = parseInt(input, 10);
-        if (isNaN(result)) {
-            console.log(`'${input}' is not a number.`)
-        } else if (result < min || result > max) {
-            console.log(`Value must be between ${min} and ${max}.`);
-        } else {
-            valid = true;
-        }
-    } while (!valid);
-
-    return result;
-}
-
-function getRevealedDoor(prizeDoor, playerDoor) {
-    let result;
-    if (prizeDoor === playerDoor) {
-        // we can chose either of the two remaining doors
-        result = (prizeDoor + 1 + randomInt(2)) % 3;
-    } else {
-        // we have only one option
-        result = 3 - prizeDoor - playerDoor;
+    const playerType = readInt("Choose [1-2]: ", 1, 2);
+    if (playerType === 1) {
+        return new players.HumanPlayer();
     }
-    return result;
+    const switchDoor = readString("Always switch doors [y/n]?: ").toLowerCase() === "y";
+    return new players.ComputerPlayer(switchDoor);
 }
 
-function playGame() {
+// actions start here
+console.log("Welcome to the Monty Hall Problem Simulator.");
 
-    // prizeDoor is zero-based, 1-3 becomes 0-2
-    let prizeDoor = randomInt(3);
-    //console.warn(prizeDoor);
+const rounds = readInt("How many rounds to you want to play? ", 1, 100000);
+const player = getPlayer();
+let wins = 0;
 
-    console.log("Let's Solve the Monty Hall Problem!");
-    console.log("There are three doors labeled 1-3.");
-
-    let playerDoor = readInt("Choose a door [1-3]:", 1, 3);
-    // make playDoor zero-based as well
-    playerDoor--;
-
-    console.log(`You chose door #${playerDoor + 1}.`);
-
-    let revealedDoor = getRevealedDoor(prizeDoor, playerDoor);
-
-    console.log(`There's a goat behind door #${revealedDoor + 1}.`)
-
-    let change = prompt("Switch doors [y/n]?:").toLowerCase() === "y";
-    if (change) {
-        playerDoor = 3 - playerDoor - revealedDoor;
-        console.log(`You switched to door #${playerDoor + 1}`);
-    }
-
-    if (playerDoor === prizeDoor) {
-        console.log("You win!");
-    } else {
-        console.log("You lose.");
+for (let r = 0; r < rounds; r++) {
+    console.log(`Round #${r + 1}`);
+    let game = new Game(player);
+    if (game.play()) {
+        wins++;
     }
 }
+
+console.log("Summary ================");
+console.log(`Total Games: ${rounds}`);
+console.log(`Wins:        ${wins}`);
+console.log(`Losses:      ${rounds - wins}`);
 
 playGame();
