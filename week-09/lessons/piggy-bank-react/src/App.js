@@ -1,28 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import CoinPanel from './CoinPanel';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/*
-        1. Remove logo.
-        <img src={logo} className="App-logo" alt="logo" />
-        2. Add <h1></h1>
-        */}
-        <h1>PIGGY BANK</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Piggy Bank</h1>
+      <div className="row">
+        <CoinPanel className="col" amount={0.25} maxClicks={5} />
+        <CoinPanel className="col" amount={0.10} maxClicks={3} />
+      </div>
     </div>
   );
 }
