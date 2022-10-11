@@ -20,9 +20,9 @@ function Numbers({min = 1, max = 10}) {
 
     return (
         <>
-            <ul>
-                {renderNumbers(numbersToDisplay)}
-            </ul>
+            <ul>{renderNumbers(numbersToDisplay)}</ul>
+            <ul>{renderNumbers(numbers)}</ul>
+            <ul>{renderNumbers(groceries)}</ul>
         </>
     );
 }
