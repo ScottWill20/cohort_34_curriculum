@@ -101,6 +101,33 @@ function SolarPanels(){
         setCurrentView('List');
     }
 
+    // Handle Edit
+
+    const handleEditPanel = (solarPanelId) => {
+        // update state var to solar panel we would like to edit
+        setEditSolarPanelId(solarPanelId);
+        // find panel in array of panels
+        const solarPanel = solarPanels.find(solarPanel => solarPanel.id === solarPanelId);
+        // create a copy of the solar panel to edit
+        const editSolarPanel = {...solarPanel }
+        // update the solar panel state variable with the solar panel object that we need to edit
+        setSolarPanel(editSolarPanel);
+        // update current view to display edit form
+        setCurrentView("Edit")
+
+    }
+
+    // Handle Delete
+
+    const handleDeletePanel = (solarPanelId) => {
+        const solarPanel = solarPanels.find(solarPanel => solarPanel.id === solarPanelId);
+
+        if(window.confirm(`Delete Solar Panel ${solarPanel.section} ${solarPanel.row} - ${solarPanel.column} ?`)) {
+            const newSolarPanels = solarPanels.filter(solarPanel => solarPanel.id !== solarPanelId)
+            setSolarPanels(newSolarPanels);
+        }
+    }
+
     return (
        <>
         {(currentView === 'Add' || currentView === 'Edit') && (
@@ -202,8 +229,8 @@ function SolarPanels(){
                                 <td>{solarPanel.material}</td>
                                 <td>{solarPanel.tracking ? 'Yes' : 'No'}</td>
                                 <td className="buttonContainer">
-                                    <button className="btn btn-primary">Edit</button>
-                                    <button className="btn btn-danger">Delete</button>
+                                    <button className="btn btn-primary" onClick={() => handleEditPanel(solarPanel.id)}>Edit</button>
+                                    <button className="btn btn-danger" onClick={() => handleDeletePanel(solarPanel.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
