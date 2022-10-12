@@ -1,10 +1,9 @@
-import AcademicPaperForm from './AcademicPaperForm.js';
+import BugSafariFetch from './BugSafariFetch';
 
 function App() {
   return (
     <main>
-      <h1>Submit an Academic Paper</h1>
-      <AcademicPaperForm />
+      <BugSafariFetch />
     </main>
   );
 }
