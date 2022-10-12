@@ -122,7 +122,7 @@ function SolarPanels(){
     const handleDeletePanel = (solarPanelId) => {
         const solarPanel = solarPanels.find(solarPanel => solarPanel.id === solarPanelId);
 
-        if(window.confirm(`Delete Solar Panel ${solarPanel.section} ${solarPanel.row} - ${solarPanel.column} ?`)) {
+        if(window.confirm(`Delete panel at location: ${solarPanel.section} ${solarPanel.row} - ${solarPanel.column} ?`)) {
             const newSolarPanels = solarPanels.filter(solarPanel => solarPanel.id !== solarPanelId)
             setSolarPanels(newSolarPanels);
         }
