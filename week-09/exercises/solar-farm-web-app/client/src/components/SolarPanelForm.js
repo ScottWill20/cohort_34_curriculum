@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { useHistory, Link, useParams } from "react-router-dom";
 
 const SOLAR_PANEL_DEFAULT ={
     section: '',
@@ -9,37 +10,26 @@ const SOLAR_PANEL_DEFAULT ={
     tracking: false
 }
 
-function SolarPanels() {
+function SolarPanelForm() {
     const endpoint = "http://localhost:8080/api/solarpanel";
     // setting up our states
     const [solarPanel, setSolarPanel] = useState(SOLAR_PANEL_DEFAULT);
     const [editSolarPanelId, setEditSolarPanelId] = useState(0);
-    const [solarPanels, setSolarPanels] = useState([]);
-    const [currentView, setCurrentView] = useState('List');
     const [errors, setErrors] = useState([]);
-
-
+    const history = useHistory();
+    const { id } = useParams();
 
     useEffect(() => {
-        getSolarPanels();
+        if (id) {
+            setEditSolarPanelId(id);
+            fetch(`${endpoint}/${id}`)
+            .then((response) => response.json())
+            .then((data) => setSolarPanel(data));
+        }
     }, []);
 
 
-    const getSolarPanels = () => {
-        fetch(endpoint).then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                return Promise.reject(`Unexpected status code ${res.status}`);
-            }
-        }).then(data => {
-            setSolarPanels(data);
-        }).catch(console.error);
-    }
-
-
-    /**Function under this line */
-    const handleChange = (event) =>{
+    const handleChange = (event) => {
         // make a copy of the object 
         const newSolarPanel = {...solarPanel};
         // if this is a checkbox
@@ -62,7 +52,6 @@ function SolarPanels() {
         }else{
             // EDIT A SOLAR PANEL
             // assign an id 
-            solarPanel.id = editSolarPanelId;
             updateSolarPanel();
         }
     };
@@ -89,8 +78,8 @@ function SolarPanels() {
         })
         .then(data =>{
             if(!data){
-                getSolarPanels();
                 resetState();
+                history.push("/");
             }else{
                 setErrors(data);
             }
@@ -117,8 +106,8 @@ function SolarPanels() {
         })
         .then(data =>{
             if(data.id){
-                getSolarPanels();
                 resetState();
+                history.push("/");
             }else{
                 setErrors(data);
             }
@@ -130,53 +119,10 @@ function SolarPanels() {
     const resetState = () => {
         setSolarPanel(SOLAR_PANEL_DEFAULT);
         setEditSolarPanelId(0);
-        setCurrentView('List');
         setErrors([]);
     };
-
-    /**Handle edit and delete below */
-    const handleEditPanel = (solarPanelId) =>{
-        //update state variable to solar panel we would like to edit 
-        setEditSolarPanelId(solarPanelId);
-
-        // find panel in array of panels 
-        const solarPanel = solarPanels.find(solarPanel => solarPanel.id === solarPanelId);
-
-        // create a copy of the solar panel to edit 
-        const editSolarPanel = { ...solarPanel };
-
-        // update the solar panel state variable with the solar panel object that we need to edit
-        setSolarPanel(editSolarPanel);
-
-        // update our current view to display edit form 
-        setCurrentView('Edit');
-    };
-
-    const handleDeletePanel = (solarPanelId) =>{
-        const solarPanel = solarPanels.find( solarPanel => solarPanel.id === solarPanelId);
-
-        if(window.confirm(`Delete Solar Panel ${solarPanel.section} - ${solarPanel.row} - ${solarPanel.column} ?`))  {
-            const init = {
-                method: 'DELETE'
-            };
-        
-            fetch(`${endpoint}/${solarPanelId}`, init)
-            .then(response => {
-                if(response.status === 204){
-                    resetState();
-                    getSolarPanels();
-                }else{
-                    return Promise.reject(`Unexpected status code: ${response.status}`);
-                }
-            })
-            .catch(console.log);
-        }
-    };
-
-    return (
-       <>
-        {(currentView === 'Add' || currentView === 'Edit') && (
-            <>
+    
+        return (<>
             <h2>{editSolarPanelId > 0 ? 'Update Solar Panel' : 'Add Solar Panel'}</h2>
 
                 {errors.length > 0 && (<div>
@@ -251,57 +197,25 @@ function SolarPanels() {
                         <option>CIGS</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="tracking">Is Tracking?:</label>
-                    <input id="tracking"
-                    name="tracking"
-                    type="checkbox"
-                    checked={solarPanel.tracking}
-                    onChange={handleChange}
-                    />
-                </div>
-                <div className="mt-4">
-                    <button className="btn btn-success" type="submit">{editSolarPanelId > 0 ? 'Update Solar Panel' : 'Add Solar Panel'}</button>
-                    <button className="btn btn-warning" type="button" onClick={resetState}>Cancel</button>
-                </div>
-            </form>
-        </>
-        )}
-        {currentView === 'List' && (
-            <>
-                <h2>Solar Panels</h2>
-                <button className="btn btn-primary" onClick={ () => setCurrentView('Add')}>Add Solar Panel</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Section</th>
-                            <th>Row-Column</th>
-                            <th>Year Installed</th>
-                            <th>Material</th>
-                            <th>Is Tracking?</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {solarPanels.map(solarPanel => (
-                            <tr key={solarPanel.id}>
-                                <td>{solarPanel.section}</td>
-                                <td>{solarPanel.row} - {solarPanel.column}</td>
-                                <td>{solarPanel.yearInstalled}</td>
-                                <td>{solarPanel.material}</td>
-                                <td>{solarPanel.tracking ? 'Yes' : 'No'}</td>
-                                <td className="buttonContainer">
-                                    <button className="btn btn-primary" onClick={()=> handleEditPanel(solarPanel.id)}>Edit</button>
-                                    <button className="btn btn-danger" onClick={() => handleDeletePanel(solarPanel.id)}>Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </>
-        )}
-        </>
-    );
+            <div className="form-group">
+                <label htmlFor="tracking">Is Tracking?:</label>
+                <input id="tracking"
+                name="tracking"
+                type="checkbox"
+                checked={solarPanel.tracking}
+                onChange={handleChange}
+                />
+            </div>
+            <div className="mt-4">
+                <button className="btn btn-success mr-4" 
+                type="submit">
+                    {editSolarPanelId > 0 ? 'Update Solar Panel' : 'Add Solar Panel'}
+                </button>
+                <Link className="btn btn-warning" to="/">Cancel</Link>
+            </div>
+        </form>
+    </>
+)
 }
 
-export default SolarPanels;
+export default SolarPanelForm;

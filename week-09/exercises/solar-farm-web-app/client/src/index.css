@@ -31,6 +31,10 @@ td{
   display:flex;
   justify-content: space-evenly;
 }
-button, input{
+
+button, 
+input, 
+a, 
+select{
   font-size:2rem !important;
 }
