@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+// NEW: import the useContext hook
+import { useEffect, useState, useContext } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+// NEW: import AuthContext
+import AuthContext from "../context/AuthContext";
 
 const DEFAULT_SIGHTING = {
   sightingId: 0,
@@ -18,6 +21,9 @@ const DEFAULT_SIGHTING = {
 function SightingForm() {
   const [sighting, setSighting] = useState(DEFAULT_SIGHTING);
   const [orders, setOrders] = useState([]);
+
+  // NEW: call the useContext hook to consume the context auth value
+  const auth = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -78,6 +84,8 @@ function SightingForm() {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          // NEW: set the Authorization header
+          Authorization: `Bearer ${auth.user.token}`,
         },
         body: JSON.stringify(updatedSighting),
       };
@@ -101,6 +109,8 @@ function SightingForm() {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          // NEW: set the Authorization header
+          Authorization: `Bearer ${auth.user.token}`,
         },
         body: JSON.stringify(updatedSighting),
       };

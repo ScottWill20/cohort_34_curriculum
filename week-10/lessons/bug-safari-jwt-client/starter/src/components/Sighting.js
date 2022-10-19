@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Sighting({ sighting, handleDelete }) {
+function Sighting({ sighting, handleDelete, canEdit, canDelete}) {
   return (
     <div>
       <figure>
@@ -27,8 +27,12 @@ function Sighting({ sighting, handleDelete }) {
       </figure>
       <footer>
         <div>
+        {canEdit && (
           <Link to={`/edit/${sighting.sightingId}`}>Edit</Link>
+        )}
+        {canDelete && (
           <button onClick={() => handleDelete(sighting.sightingId)}>Delete</button>
+        )}
         </div>
       </footer>
     </div>
