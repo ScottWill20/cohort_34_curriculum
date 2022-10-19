@@ -1,5 +1,6 @@
 package learn.safari.security;
 
+import learn.safari.models.AppUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +18,7 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
     private final JwtConverter converter;
 
     public JwtRequestFilter(AuthenticationManager authenticationManager, JwtConverter converter) {
-        super(authenticationManager); // 1. Must satisfy the super class.
+        super(authenticationManager);
         this.converter = converter;
     }
 
@@ -26,25 +27,21 @@ public class JwtRequestFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
-        // 2. Read the Authorization value from the request.
         String authorization = request.getHeader("Authorization");
         if (authorization != null && authorization.startsWith("Bearer ")) {
-
-            // 3. The value looks okay, confirm it with JwtConverter.
-            UserDetails user = converter.getUserFromToken(authorization);
+            AppUser user = converter.getUserFromToken(authorization);
             if (user == null) {
                 response.setStatus(403); // Forbidden
             } else {
 
-                // 4. Confirmed. Set auth for this single request.
+                // Update the "principal" from the username to `user`
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        user.getUsername(), null, user.getAuthorities());
+                        user, null, user.getAuthorities());
 
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
         }
 
-        // 5. Keep the chain going.
         chain.doFilter(request, response);
     }
 }

@@ -1,0 +1,1 @@
+# Bug Safari JWT Client
